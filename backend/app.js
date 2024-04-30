@@ -16,7 +16,15 @@ app.use(
     saveUninitialized: false,
   })
 );
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .json({
+      Welcome:
+        "you are welcome to the pharmacy that combine different pharmacy",
+    });
+});
 export default app;
