@@ -4,8 +4,10 @@
   "description": "back-end of the pahrmacy project",
   "main": "index.js",
   "scripts": {
+    "migration": "npx sequelize db:migrate",
+    "demigrate": "npx sequelize db:migrate:undo:all",
     "start": "node ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run demigrate && npm run migration && node ./index.js "
   },
   "type": "module",
   "author": "Tchami",
@@ -16,7 +18,12 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "mysql2": "^3.9.7",
     "nodemon": "^3.1.0",
-    "sequelize": "^6.37.3"
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "pg": "^8.11.5",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2"
   }
 }

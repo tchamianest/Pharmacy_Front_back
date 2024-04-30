@@ -1,30 +1,32 @@
-const passport = require("passport");
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
-const { config } = require("dotenv");
-const User = require("./../models/Users");
+import passport from "passport";
+import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
+import { config } from "dotenv";
+import User from "../models/user.js";
 
-config({ path: "./config.env" });
+config();
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET,
 };
-
 const jwtStrategy = new JwtStrategy(jwtOptions, async (payload, done) => {
   try {
     const user = await User.findOne({
-      email: payload.email,
+      where: {
+        email: payload.email,
+        verified: true,
+      },
+      attributes: { exclude: ["password"] },
     });
+
     if (!user) {
       return done(null, false);
     }
     return done(null, user);
-  } catch (err) {
-    return done(err);
+  } catch (error) {
+    return done(error);
   }
 });
 
 passport.use("jwt", jwtStrategy);
-
-module.exports = passport;
+export default passport;

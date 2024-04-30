@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
+import session from "express-session";
 import bodyParser from "body-parser";
-import passport, { session } from "./config/passport.config";
+import passport from "./config/passport.config.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -20,11 +21,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
-  res
-    .status(200)
-    .json({
-      Welcome:
-        "you are welcome to the pharmacy that combine different pharmacy",
-    });
+  res.status(200).json({
+    Welcome: "you are welcome to the pharmacy that combine different pharmacy",
+  });
 });
 export default app;
