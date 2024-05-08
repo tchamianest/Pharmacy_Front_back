@@ -1,13 +1,14 @@
-import "./App.css";
+import React from "react";
+import Navbar from "./components/navbar/Navbar";
+import Hero from "./components/Home/Hero";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <div>
-        <p>start up the project</p>
-      </div>
-    </>
+    <div>
+      <Navbar />
+      <Hero />
+    </div>
   );
-}
+};
 
 export default App;
