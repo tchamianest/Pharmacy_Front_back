@@ -21,7 +21,7 @@ const Dropdownlink = [
 ];
 const Navbar = () => {
   return (
-    <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 z-40">
+    <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 z-40 top-0 sticky w-screen">
       {/* Upper Navabar */}
       <div className="bg-primary/20 py-2 flex">
         <div className="container justify-between flex items-center">
@@ -65,7 +65,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* Lower Navbar */}
-      <div className="flex justify-center">
+      <div className="flex justify-center ">
         <ul className="sm:flex hidden items-center gap-4 py-1">
           {Menu.map((data) => (
             <>
