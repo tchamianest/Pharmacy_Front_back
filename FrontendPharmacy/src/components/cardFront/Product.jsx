@@ -31,6 +31,7 @@ const Product = (props) => {
           <p className="text-gray-700 text-lg  text-center font-bold mt-0 ">
             Price :
           </p>
+          {/* change */}
           <p className="text-slate-500 text-lg text-center mt-0 mb-3">
             {props.price} RWF
           </p>

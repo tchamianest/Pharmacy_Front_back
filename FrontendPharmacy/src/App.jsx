@@ -1,19 +1,17 @@
 import React from "react";
-import Navbar from "./components/navbar/Navbar";
-import Hero from "./components/Home/Hero";
-import LatestPro from "./components/Product/LatestPro";
-import AllProduct from "./components/AllProduct/AllProduct";
-import Footer from "./components/Footer/Footer";
-
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import ProtectedRoute from "./Route/ProtectedRoute";
+import HomePage from "./components/HomePage";
+import Login from "./components/Page/Login";
 const App = () => {
   return (
-    <div className="dark:bg-gray-800">
-      <Navbar />
-      <Hero />
-      <LatestPro />
-      <AllProduct />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="dashboard" element={<ProtectedRoute />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
