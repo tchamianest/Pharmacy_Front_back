@@ -7,17 +7,21 @@
     "migration": "npx sequelize db:migrate",
     "demigrate": "npx sequelize db:migrate:undo:all",
     "start": "node ./index.js",
-    "dev": "npm run demigrate && npm run migration && node ./index.js "
+    "dev": "npm run demigrate && npm run migration &&   nodemon  ./index.js "
   },
   "type": "module",
   "author": "Tchami",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "cloudinary": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.9.7",
     "nodemon": "^3.1.0",
     "passport": "^0.7.0",

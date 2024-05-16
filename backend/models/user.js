@@ -33,10 +33,7 @@ User.init(
         notEmpty: true,
       },
     },
-    googleId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+
     password: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -57,22 +54,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    preferredCurrency: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+
     whereYouLive: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
-    billingAddress: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    role: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: "buyer",
     },
 
     createdAt: {

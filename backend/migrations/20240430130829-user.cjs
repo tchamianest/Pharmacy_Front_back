@@ -33,34 +33,17 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      googleId: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      birthDate: {
-        type: Sequelize.DATE,
-        allowNull: true,
-      },
       preferredLanguage: {
         type: Sequelize.STRING,
         allowNull: true,
       },
 
-      billingAddress: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
       whereYouLive: {
         type: Sequelize.STRING,
         allowNull: true,
         defaultValue: "",
       },
 
-      roleId: {
-        type: Sequelize.STRING,
-        allowNull: true,
-        defaultValue: "buyer",
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

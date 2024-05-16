@@ -4,6 +4,7 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import passport from "./config/passport.config.js";
 import dotenv from "dotenv";
+import users from "./routes/users.routes.js";
 
 dotenv.config();
 
@@ -25,4 +26,5 @@ app.get("/", (req, res) => {
     Welcome: "you are welcome to the pharmacy that combine different pharmacy",
   });
 });
+app.use("/api/users", users);
 export default app;

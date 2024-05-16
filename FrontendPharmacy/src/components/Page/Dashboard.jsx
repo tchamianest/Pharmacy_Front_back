@@ -10,7 +10,7 @@ function Dashboard() {
   const [open, setOpen] = useState(true);
   const [display, setDisplay] = useState(<HomeDash />);
   const Menus = [
-    { title: "Home", src: "Chart", clicked: false },
+    { title: "Home", src: "Chart", clicked: true },
     { title: "Inbox", src: "Chat", clicked: false },
     { title: "Medicals", src: "User", clicked: false },
     { title: "PostMedical ", src: "Calendar", clicked: false },
