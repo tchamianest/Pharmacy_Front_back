@@ -11,9 +11,12 @@ const Login = () => {
   };
 
   return (
-    <div className=" flex items-center justify-center p-10 m-10 rounded-lg ">
-      <div className="bg-gray-200 min-h-[600px] items-center flex p-90 justify-between min-w-[90%] lg:w-[80%] rounded-lg shadow-md ">
-        <div className="p-3 w-1/2 hidden lg:block    rounded-lg  bg-cover bg-no-repeat ">
+    <div className=" flex items-center justify-center p-10 bg-gray-900 min-h-screen rounded-lg ">
+      <div className="bg-gray-200 min-h-[600px]  flex p-10 justify-between lg:w-[60%] rounded-lg shadow-md ">
+        <div
+          className=" sm:flex  content-center 
+         p-3 w-1/2 hidden lg:block  "
+        >
           <h1 className="text-black z-1 font-bold text-2xl pl-10 ">
             {!isSignUp ? "Welcome Again Seller" : "SignUp to be a Seller"}
           </h1>
@@ -37,83 +40,102 @@ const Login = () => {
             </button>
           </div>
         </div>
-        <div className="w-[100%] lg:w-1/2 m-10">
-          {isSignUp && (
-            <div className="grid grid-cols-2 gap-5">
-              <input
-                type="text"
-                placeholder="Firstname"
-                className="border border-gray-400 rounded-lg py-1 px-2"
-              />
-              <input
-                type="text"
-                placeholder="Surname"
-                className="border border-gray-400 rounded-lg py-1 px-2"
-              />
-            </div>
-          )}
+        <div className="w-[100%] lg:w-1/2  relative">
+          <div className="absolute top-0 min-w-[100%] ">
+            {" "}
+            <h1 className="text-center  text-blue-500 font-bold text-[30px]">
+              {isSignUp ? "SignUp Page" : "Login Page"}
+            </h1>
+          </div>
+          <div className="items-center flex justify-center h-[100%] mt-10">
+            <div>
+              {isSignUp && (
+                <div className="grid grid-cols-2 gap-5">
+                  <input
+                    type="text"
+                    placeholder="Firstname"
+                    className="border border-gray-400 rounded-lg py-1 px-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Surname"
+                    className="border border-gray-400 rounded-lg py-1 px-2"
+                  />
+                </div>
+              )}
 
-          <div className="mt-5">
-            <input
-              type="text"
-              placeholder="Email"
-              className="border border-gray-400 py-1 rounded-lg px-2 w-full"
-            />
-          </div>
-          <div className="mt-5">
-            <input
-              type="password"
-              placeholder="Password"
-              className="border rounded-lg border-gray-400 py-1 px-2 w-full"
-            />
-          </div>
-          {isSignUp && (
-            <>
-              <div className="mt-5">
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  className="border rounded-lg border-gray-400 py-1 px-2 w-full"
-                />
-              </div>
               <div className="mt-5">
                 <input
                   type="text"
-                  placeholder="Location"
+                  placeholder="Email"
+                  className="border border-gray-400 py-1 rounded-lg px-2 w-full"
+                />
+              </div>
+              <div className="mt-5">
+                <input
+                  type="password"
+                  placeholder="Password"
                   className="border rounded-lg border-gray-400 py-1 px-2 w-full"
                 />
               </div>
-              <div className="mt-5 flex justify-between items-center">
-                <p className="text-black/70 font-bold">Profile image :</p>
-                <input
-                  type="file"
-                  placeholder="profile Image"
-                  className="border rounded-lg border-gray-400 py-1 px-2 "
-                />
-              </div>
-            </>
-          )}
+              {isSignUp && (
+                <>
+                  <div className="mt-5">
+                    <input
+                      type="password"
+                      placeholder="Confirm Password"
+                      className="border rounded-lg border-gray-400 py-1 px-2 w-full"
+                    />
+                  </div>
+                  <div className="mt-5">
+                    <input
+                      type="text"
+                      placeholder="Location"
+                      className="border rounded-lg border-gray-400 py-1 px-2 w-full"
+                    />
+                  </div>
+                  <div className="mt-5 flex justify-between items-center">
+                    <p className="text-black/70 font-bold">Profile image :</p>
+                    <input
+                      type="file"
+                      placeholder="profile Image"
+                      className="border rounded-lg border-gray-400 py-1 px-2 "
+                    />
+                  </div>
+                </>
+              )}
 
-          <div className="mt-5">
-            <input
-              type="checkbox"
-              className="border rounded-lg border-gray-400"
-            />
-            <span className="text-black">
-              I accept the{" "}
-              <a href="#" className="text-purple-500 font-semibold">
-                Terms of Use
-              </a>{" "}
-              &{" "}
-              <a href="#" className="text-purple-500 font-semibold">
-                Privacy Policy
-              </a>
-            </span>
-          </div>
-          <div className="mt-5">
-            <button className="w-full rounded-lg bg-secondary hover:bg-primary py-3 text-center text-white">
-              {isSignUp ? "Register Now" : "Login"}
-            </button>
+              <div className="mt-5">
+                <input
+                  type="checkbox"
+                  className="border rounded-lg border-gray-400"
+                />
+                <span className="text-black">
+                  I accept the{" "}
+                  <a href="#" className="text-purple-500 font-semibold">
+                    Terms of Use
+                  </a>{" "}
+                  &{" "}
+                  <a href="#" className="text-purple-500 font-semibold">
+                    Privacy Policy
+                  </a>
+                </span>
+              </div>
+              <div className="mt-5">
+                <button className="w-full rounded-lg bg-secondary hover:bg-primary py-3 text-center text-white">
+                  {isSignUp ? "Register Now" : "Login"}
+                </button>
+              </div>
+              <div className=" flex text-black gap-4  pt-3  justify-between sm:hidden">
+                <p>Click here to 👉 </p>
+                <button
+                  className="text-blue-900 hover:text-primary hover:text-[17px]"
+                  onClick={switchModesign}
+                >
+                  {isSignUp ? "Login" : "signUp"}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
