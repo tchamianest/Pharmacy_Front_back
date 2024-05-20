@@ -1,5 +1,6 @@
 import express from "express";
 import multerupload from "../utils/multer.js";
+import { tokenChecker } from "../controller/TokenCheck.js";
 import {
   userSignup,
   profile,
@@ -19,5 +20,6 @@ users.patch(
   multerupload.single("profileImage"),
   editUser
 );
+users.get("/tokecheck", authenticat, tokenChecker);
 
 export default users;

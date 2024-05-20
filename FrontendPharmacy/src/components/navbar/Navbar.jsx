@@ -105,7 +105,7 @@ const Navbar = () => {
           </li>
           <li className="px-5">
             <button className=" text-white bg-primary px-4 py-1  hover:bg-primary/70 rounded-2xl">
-              <a href="#">Login </a>
+              <a href="/login">Login </a>
             </button>
           </li>
         </ul>
