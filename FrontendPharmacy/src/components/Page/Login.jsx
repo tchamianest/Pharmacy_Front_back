@@ -75,13 +75,25 @@ const Login = () => {
             },
           }
         );
-        console.log(response);
+
+        const user = {
+          name1: response.data.user.firstName,
+          name2: response.data.user.lastName,
+          phone: response.data.user.phone,
+          email: response.data.user.email,
+          preferredLanguage: response.data.user.preferredLanguage,
+          profileImage: response.data.user.profileImage,
+          Location: response.data.user.whereYouLive,
+        };
         localStorage.setItem("HeaderToken", response.data.token);
+        localStorage.setItem("user", JSON.stringify(user));
         navigate("/dashboard");
       }
     } catch (error) {
       console.log(error.response?.data || error.message);
-      console.log("error in login/signup");
+      console.log(error.response.data.error);
+
+      setError(` ${error.response.data.error}`);
     }
   };
   const switchModesign = () => {
