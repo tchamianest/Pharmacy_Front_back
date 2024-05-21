@@ -57,9 +57,11 @@ export const userLogin = async (req, res) => {
       findUser.dataValues.email
     );
 
-    res
-      .status(200)
-      .json({ message: "Login Successfully", token: `Bearer ${token}` });
+    res.status(200).json({
+      message: "Login Successfully",
+      token: `Bearer ${token}`,
+      user: findUser,
+    });
   } catch (err) {
     res.status(500).json({ err: "internal server error" });
   }
