@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Chart } from "chart.js/auto";
 import { CategoryScale } from "chart.js/auto";
 import { Data } from "../../utils/Data";

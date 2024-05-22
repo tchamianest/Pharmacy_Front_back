@@ -30,8 +30,6 @@ const Login = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(formdata.email, formdata.password);
     try {
       if (isSignUp) {
         if (formdata.password !== formdata.confirmPassword) {

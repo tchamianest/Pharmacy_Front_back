@@ -78,18 +78,24 @@ export const profile = (req, res) => {
 /// EDIT USER PROFILE
 export const editUser = async (req, res) => {
   try {
-    const { firstName, lastName, phone, preferredLanguage, whereYouLive } =
-      req.body;
+    const {
+      firstName,
+      lastName,
+      phone,
+      preferredLanguage,
+      whereYouLive,
+      email,
+    } = req.body;
     if (!firstName && !lastName && !profileImage) {
       return res.status(400).send({
         error: "At least one property is required to update the user",
       });
     }
 
-    if (req.body.email || req.body.password) {
+    if (req.body.password) {
       return res
         .status(400)
-        .send({ error: "it is not possible to update email or password Here" });
+        .send({ error: "it is not possible to update  password Here" });
     }
 
     const user = await User.findOne({
@@ -114,6 +120,7 @@ export const editUser = async (req, res) => {
       phone: phone || user?.phone,
       preferredLanguage: preferredLanguage || user?.preferredLanguage,
       whereYouLive: whereYouLive || user?.whereYouLive,
+      email: email || user?.email,
     };
     console.log(updatedUser);
 
