@@ -45,7 +45,7 @@ const LatestPro = () => {
     slidesToScroll: 3,
   };
   return (
-    <div className="bg-primary/20  dark:bg-gray-900 dark:text-white">
+    <div className=" bg-gray-900 text-white">
       <div className="container pb-7">
         <div className=" justify-between flex gap-2 pt-7 ">
           <div className="font-medium text-1xl sm:text-2xl dark:text-white text-blue-400">
@@ -67,7 +67,7 @@ const LatestPro = () => {
               vitality.
             </p>
           </div>
-          <div className="flex-1  dark:bg-gray-800  bg-primary/20 max-w-[80%] rounded-lg  text-black p-1 items-center">
+          <div className="flex-1 bg-gray-800  max-w-[80%] rounded-lg  text-black p-1 items-center">
             <Slider {...settings} className="relative p-0 m-0  ">
               {dummyData.map((el, i) => (
                 <>
