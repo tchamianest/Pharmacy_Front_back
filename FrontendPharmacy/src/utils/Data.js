@@ -26,7 +26,7 @@ export const Data = [
   {
     id: 5,
     year: 2024,
-    userGain: 74300,
+    userGain: 94300,
     userLost: 234,
   },
 ];

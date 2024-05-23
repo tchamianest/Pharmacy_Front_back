@@ -51,6 +51,9 @@ const Login = () => {
           }
         );
         console.log(response);
+        if (response.status == 201) {
+          setIsSignUp(false);
+        }
       } else {
         if (formdata.email.length < 2) {
           return setError("email is required ");
