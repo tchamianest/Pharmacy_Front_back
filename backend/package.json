@@ -7,7 +7,7 @@
     "migration": "npx sequelize db:migrate",
     "demigrate": "npx sequelize db:migrate:undo:all",
     "start": "node ./index.js",
-    "dev": "npm run demigrate && npm run migration &&   nodemon  ./index.js "
+    "dev": " npm run migration &&   nodemon  ./index.js "
   },
   "type": "module",
   "author": "Tchami",

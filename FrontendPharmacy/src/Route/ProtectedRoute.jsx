@@ -28,7 +28,6 @@ const ProtectedRoute = () => {
     check();
   });
 
-  console.log(auth);
   if (auth === null) {
     return (
       <div className="flex items-center justify-center">

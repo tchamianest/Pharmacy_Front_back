@@ -1,6 +1,6 @@
 import React from "react";
-const users = JSON.parse(localStorage.getItem("user"));
 function TopSection(props) {
+  const users = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="flex justify-between pr-20 p-3">
       <h1 className="font-medium text-2xl">{props.name}</h1>

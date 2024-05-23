@@ -29,7 +29,6 @@ function Dashboard() {
       }
     });
     setMenus(updatedMenus);
-    console.log(Menus);
     switch (clickedItem.title) {
       case "Home":
         setDisplay(<HomeDash />);
