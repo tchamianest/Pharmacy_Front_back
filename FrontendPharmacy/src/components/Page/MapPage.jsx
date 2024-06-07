@@ -80,7 +80,7 @@ function MapPage() {
                   </p>
                 </div>
               </div>
-              <button className="w-[90%] bg-primary/90 p-2 text-white font-bold rounded-sm hover:bg-primary/70">
+              <button className="w-[90%] duration-200 bg-primary/90 p-2 text-white font-bold rounded-sm hover:bg-primary/70">
                 Whatsap Text
               </button>
             </div>

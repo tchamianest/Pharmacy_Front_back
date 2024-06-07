@@ -111,71 +111,71 @@ const Setting = () => {
       <ToastContainer />
       <div className="m-10 ">
         <div className=" bg-gray-100 p-6 w-[80%]">
-          <div className="flex gap-10 item-center content-center justify-between w-[70%] m-5">
-            <p className="text-black font-bold p-2">First Name :</p>
+          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
+            <p className="text-black font-semibold p-2">First Name :</p>
             <input
               type="text"
               placeholder="First Name"
               name="firstname"
               value={data.firstname}
               onChange={(event) => changeHandle(event)}
-              className="w-[70%] p-2 rounded-lg"
+              className="w-[70%] p-1 rounded-sm"
             />
           </div>
-          <div className="flex gap-10 item-center content-center justify-between w-[70%] m-5">
-            <p className="text-black font-bold p-2">Last Name :</p>
+          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
+            <p className="text-black font-semibold p-2">Last Name :</p>
             <input
               type="text"
               placeholder="Last Name"
               name="lastname"
               value={data.lastname}
               onChange={changeHandle}
-              className="w-[70%] p-2 rounded-lg"
+              className="w-[70%] p-1 rounded-sm"
             />
           </div>
-          <div className="flex gap-10 item-center content-center justify-between w-[70%] m-5">
-            <p className="text-black font-bold p-2">Preferred language :</p>
+          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
+            <p className="text-black font-semibold p-2">Preferred language :</p>
             <input
               type="text "
               placeholder="Prefferred Language"
               name="language"
               value={data.language}
               onChange={(event) => changeHandle(event)}
-              className="w-[70%] p-2 rounded-lg"
+              className="w-[70%] p-1 rounded-sm"
             />
           </div>
-          <div className="flex gap-10 item-center content-center justify-between w-[70%] m-5">
-            <p className="text-black font-bold p-2">Phone Number :</p>
+          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
+            <p className="text-black font-semibold p-2">Phone Number :</p>
             <input
               type="text"
               placeholder="Phone number"
               name="phone"
               value={data.phone}
               onChange={(event) => changeHandle(event)}
-              className="w-[70%] p-2 rounded-lg"
+              className="w-[70%] p-1 rounded-sm"
             />
           </div>
 
-          <div className="flex gap-10 item-center content-center justify-between w-[70%] m-5">
-            <p className="text-black font-bold p-2">Profile Image :</p>
+          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
+            <p className="text-black font-semibold p-2">Profile Image :</p>
             <input
               type="file"
               placeholder="Profile image"
               name="image"
               onChange={(event) => changeHandle(event)}
-              className="w-[70%] p-2 rounded-lg"
+              className="w-[70%] p-1 rounded-sm"
             />
           </div>
-          <div className="flex gap-10 item-center content-center justify-between w-[70%] m-5">
+          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
             <div></div>
-            <div className="flex justify-between w-[70%]">
-              <button className="py-3 w-[30%] rounded-lg hover:bg-blue-700 bg-blue-500 text-white font-bold">
+            <div className="flex justify-between w-[70%] gap-4">
+              <button className="py-2 w-[50%] rounded-sm hover:bg-blue-700 bg-blue-500 text-white font-bold">
                 <a href="#" className="text-white font-bold">
                   Cancel
                 </a>
               </button>
               <button
-                className="py-3 w-[30%] font-bold text-white bg-primary/80 hover:bg-primary  rounded-lg "
+                className="py-2 w-[50%] font-bold text-white bg-primary/80 hover:bg-primary  rounded-sm "
                 onClick={(e) => Submitbutton(e)}
               >
                 Save Data
