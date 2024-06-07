@@ -8,7 +8,7 @@ import { FaCaretDown } from "react-icons/fa";
 //MENU ARRAY
 const Menu = [
   { id: 1, name: "Home", link: "/#" },
-  { id: 2, name: "Medical", link: "/#" },
+  { id: 2, name: "Medical", link: "/product" },
   { id: 3, name: "Doctors", link: "/#" },
   { id: 4, name: "Region", link: "/#" },
   { id: 4, name: "Menu", link: "/#" },

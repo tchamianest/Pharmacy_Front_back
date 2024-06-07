@@ -11,11 +11,8 @@ function Dashboard() {
   const [display, setDisplay] = useState(<HomeDash />);
   const Menus = [
     { title: "Home", src: "Chart", clicked: true },
-    { title: "Inbox", src: "Chat", clicked: false },
-    { title: "Medicals", src: "User", clicked: false },
-    { title: "PostMedical ", src: "Calendar", clicked: false },
-    { title: "Analytics", src: "Chart", clicked: false },
-    { title: "Files ", src: "Folder", gap: true, clicked: false },
+    { title: "Medicals", src: "Folder", clicked: false },
+    { title: "PostMedical", src: "Calendar", clicked: false },
     { title: "Setting", src: "Setting", clicked: false },
   ];
   const [menu, setMenus] = useState(Menus);
@@ -100,7 +97,7 @@ function Dashboard() {
               <span
                 className={`${
                   !open && "hidden"
-                } origin-left duration-200 hover:text-primary hover:text-[20px]`}
+                } origin-left duration-200   hover:text-primary hover:text-[20px]`}
               >
                 {Menu.title}
               </span>

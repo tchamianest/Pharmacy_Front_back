@@ -10,6 +10,9 @@ export default {
       xl: "1440px",
     },
     extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
       colors: {
         primary: "#fea928",
         secondary: "#ed8900",

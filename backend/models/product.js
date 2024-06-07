@@ -1,6 +1,5 @@
 import { DataTypes, UUIDV4, Model } from "sequelize";
-import { sequelizeConnection } from "../config/db.config";
-
+import { sequelizeConnection } from "../config/db.config.js";
 
 class Product extends Model {}
 
@@ -28,14 +27,7 @@ Product.init(
         notEmpty: true,
       },
     },
-    productCategory: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    stockLevel: {
+    isAvailable: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
@@ -44,7 +36,7 @@ Product.init(
       },
     },
     productPrice: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
@@ -56,30 +48,9 @@ Product.init(
       defaultValue: false,
       allowNull: false,
     },
-    productCurrency: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    productDiscount: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: "0",
-    },
+
     productDescription: {
       type: DataTypes.TEXT,
-      allowNull: false,
-      unique: true,
-      validate: {
-        notEmpty: true,
-      },
-    },
-
-    productThumbnail: {
-      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
@@ -90,10 +61,7 @@ Product.init(
       type: DataTypes.ARRAY(DataTypes.JSON),
       allowNull: true,
     },
-    expireDate: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -101,11 +69,6 @@ Product.init(
     updatedAt: {
       allowNull: false,
       type: DataTypes.DATE,
-    },
-    isExpired: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
     },
   },
   {

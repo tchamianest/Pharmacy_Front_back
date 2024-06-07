@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import passport from "./config/passport.config.js";
 import dotenv from "dotenv";
 import users from "./routes/users.routes.js";
+import productRoute from "./routes/product.routes.js";
 
 dotenv.config();
 
@@ -27,4 +28,5 @@ app.get("/", (req, res) => {
   });
 });
 app.use("/api/users", users);
+app.use("/api/product", productRoute);
 export default app;
