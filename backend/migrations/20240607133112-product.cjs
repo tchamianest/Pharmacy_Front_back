@@ -5,6 +5,9 @@ const { UUIDV4 } = require("sequelize");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    await queryInterface.sequelize.query(
+      "CREATE EXTENSION IF NOT EXISTS pg_trgm;"
+    );
     await queryInterface.createTable("products", {
       id: {
         type: Sequelize.UUID,
@@ -57,5 +60,6 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("products");
+    await queryInterface.sequelize.query("DROP EXTENSION IF EXISTS pg_trgm;");
   },
 };
