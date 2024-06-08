@@ -6,6 +6,7 @@ import passport from "./config/passport.config.js";
 import dotenv from "dotenv";
 import users from "./routes/users.routes.js";
 import productRoute from "./routes/product.routes.js";
+import searchRoutes from "./routes/search.routes.js";
 
 dotenv.config();
 
@@ -29,4 +30,5 @@ app.get("/", (req, res) => {
 });
 app.use("/api/users", users);
 app.use("/api/product", productRoute);
+app.use("/api/search", searchRoutes);
 export default app;
