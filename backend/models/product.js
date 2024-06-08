@@ -19,16 +19,12 @@ Product.init(
         notEmpty: true,
       },
     },
-    productName: {
+    location: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        notEmpty: true,
-      },
     },
-    isAvailable: {
-      type: DataTypes.INTEGER,
+    productName: {
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
@@ -38,10 +34,6 @@ Product.init(
     productPrice: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        notEmpty: true,
-      },
     },
     isAvailable: {
       type: DataTypes.BOOLEAN,
@@ -50,16 +42,15 @@ Product.init(
     },
 
     productDescription: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         notEmpty: true,
       },
     },
     productPictures: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
-      allowNull: true,
+      type: DataTypes.STRING,
+      allowNull: false,
     },
 
     createdAt: {

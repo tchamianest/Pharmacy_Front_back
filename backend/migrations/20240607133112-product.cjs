@@ -19,7 +19,15 @@ module.exports = {
         onDelete: "cascade",
         onUpdate: "cascade",
       },
+      location: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       productName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      productPrice: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -29,11 +37,7 @@ module.exports = {
         allowNull: false,
       },
       productDescription: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      productPrice: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       productPictures: {
