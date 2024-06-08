@@ -5,6 +5,11 @@ import uploadImage from "../utils/cloudinary.utils.js";
 export const createProduct = async (req, res) => {
   try {
     //   const user = req.user;
+    if (req.user.dataValues.whereYouLive.length < 1) {
+      return res
+        .status(200)
+        .json({ error: "please update your profile to access your location" });
+    }
     const { productName, productDescription, productPrice } = req.body;
     if (!productName || !productPrice || !productDescription) {
       return res.status(400).send({
