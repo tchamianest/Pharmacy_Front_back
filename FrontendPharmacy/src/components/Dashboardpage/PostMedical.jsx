@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function PostMedical() {
+  const notify = (message) => toast(`${message}`);
   const users = JSON.parse(localStorage.getItem("user"));
 
   const navigate = useNavigate();
@@ -9,9 +13,62 @@ function PostMedical() {
     localStorage.clear();
     navigate("/");
   };
+  const initialstate = {
+    name: "",
+    price: "",
+    description: "",
+    image: null,
+  };
+  const [data, setData] = useState(initialstate);
+  const fileInputRef = useRef(null);
+  const changeHandle = (e) => {
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      setData((prevData) => ({
+        ...prevData,
+        [name]: files[0],
+      }));
+    } else {
+      setData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
 
+  ///CREATE PRODUCT
+  const formdata = new FormData();
+  formdata.append("productName", data.name);
+  formdata.append("productDescription", data.description);
+  formdata.append("productPrice", data.price);
+  formdata.append("productImage", data.image);
+  const onsubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/product/create",
+
+        formdata,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: localStorage.getItem("HeaderToken"),
+          },
+        }
+      );
+      if (response) {
+        setData(initialstate);
+        fileInputRef.current.value = "";
+        notify(`PRODUCT CREATED ✅`);
+      }
+    } catch (error) {
+      notify(error.response.data.Error);
+    }
+  };
   return (
     <div>
+      <ToastContainer />
       <div className="flex justify-between pr-20 p-3">
         <h1 className="font-medium text-2xl">Post Medical Dashboard</h1>
         <div className="flex  items-center gap-3 border-[1px] p-2 px-5">
@@ -35,41 +92,41 @@ function PostMedical() {
         </div>
       </div>
       <div className="m-10 ">
-        <div className=" bg-gray-100 p-6 w-[80%]">
+        <form className=" bg-gray-100 p-6 w-[80%]" onSubmit={onsubmit}>
           <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
-            <p className="text-black font-semibold p-2">First Name :</p>
+            <p className="text-black font-semibold p-2">Product Name :</p>
             <input
               type="text"
               placeholder="First Name"
-              name="firstname"
+              name="name"
+              value={data.name}
+              onChange={(event) => changeHandle(event)}
               className="w-[70%] p-1 rounded-sm"
             />
           </div>
           <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
-            <p className="text-black font-semibold p-2">Last Name :</p>
+            <p className="text-black font-semibold p-2">Product Price :</p>
             <input
               type="text"
               placeholder="Last Name"
-              name="lastname"
+              name="price"
+              value={data.price}
+              onChange={(event) => changeHandle(event)}
               className="w-[70%] p-1 rounded-sm"
             />
           </div>
+
           <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
-            <p className="text-black font-semibold p-2">Preferred language :</p>
-            <input
-              type="text "
-              placeholder="Prefferred Language"
-              name="language"
-              className="w-[70%] p-1 rounded-sm"
-            />
-          </div>
-          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
-            <p className="text-black font-semibold p-2">Medical Price :</p>
-            <input
-              type="text"
+            <p className="text-black font-semibold p-2">
+              Product description :
+            </p>
+            <textarea
+              type="text-area"
               placeholder="Phone number"
-              name="phone"
-              className="w-[70%] p-1 rounded-sm"
+              name="description"
+              value={data.description}
+              onChange={(event) => changeHandle(event)}
+              className="w-[70%] p-1 rounded-sm h-40"
             />
           </div>
 
@@ -77,8 +134,10 @@ function PostMedical() {
             <p className="text-black font-semibold p-2">Product Image :</p>
             <input
               type="file"
-              placeholder="Profile image"
+              placeholder="Product image"
               name="image"
+              ref={fileInputRef}
+              onChange={(event) => changeHandle(event)}
               className="w-[70%] p-1 rounded-sm"
             />
           </div>
@@ -90,12 +149,15 @@ function PostMedical() {
                   Cancel
                 </a>
               </button>
-              <button className="py-2 w-[50%] font-bold text-white bg-primary/80 hover:bg-primary  rounded-sm ">
+              <button
+                className="py-2 w-[50%] font-bold text-white bg-primary/80 hover:bg-primary  rounded-sm "
+                type="submit"
+              >
                 Save Data
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
