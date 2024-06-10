@@ -4,6 +4,7 @@ import {
   createProduct,
   AllProduct,
   SellerProduct,
+  OneProduct,
 } from "../controller/product.controller.js";
 import authenticat from "../middleware/userAuthenticate.js";
 
@@ -18,4 +19,5 @@ productRoute.post(
 
 productRoute.get("/", AllProduct);
 productRoute.get("/medicals", authenticat, SellerProduct);
+productRoute.get("/:id", OneProduct);
 export default productRoute;

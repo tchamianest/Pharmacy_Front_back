@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useMap } from "react-leaflet/hooks";
 import L from "leaflet";
@@ -6,9 +7,11 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-routing-machine";
 import Navbar from "../navbar/Navbar";
 import Footer from "../Footer/Footer";
+import axios from "axios";
 
 const origin = { lat: -1.969733, lng: 30.061962 };
-const destination = { lat: -1.79782, lng: 30.07398 };
+let destination;
+// let destination = { lat: -1.79782, lng: 30.07398 };
 
 function Routing({ start, end }) {
   const map = useMap();
@@ -28,6 +31,21 @@ function Routing({ start, end }) {
 }
 
 function MapPage() {
+  const [medical, setMedical] = useState([]);
+
+  useEffect(() => {
+    const data1 = async () => {
+      const desti = await medical.location;
+      const data = desti.split(" ");
+      destination = { lat: data[1], lng: data[3] };
+      console.log(destination);
+    };
+    data1();
+  }, []);
+  // const data = desti.split(" ");
+  // const lat = Number(data[1]);
+  // const long = Number(data[3]);
+  // console.log(lat, long);
   const originPosition = [origin.lat, origin.lng];
   const destinationPosition = [destination.lat, destination.lng];
 
@@ -43,6 +61,31 @@ function MapPage() {
       iconSize: [1, 1], // Set icon size to zero to only show the label
     });
   };
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const id = searchParams.get("id");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get(
+          `http://localhost:5000/api/product/${id}`,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: localStorage.getItem("HeaderToken"),
+            },
+          }
+        );
+        setMedical(result.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(medical);
   return (
     <>
       <div className="flex justify-center dark:bg-gray-800 items-center flex-col  gap-8">
@@ -52,31 +95,28 @@ function MapPage() {
           <div className="flex  gap-5">
             <div className="w-[50%]  overflow-hidden">
               <img
-                src="./store.png"
+                src={medical.productPictures}
                 alt="Product"
-                className="object-cover w-[100%] "
+                className="object-cover w-[100%] max-h-[330px] "
               />
             </div>
             <div className="w-[55%] flex flex-col justify-between px-10">
               <div>
-                <h1 className="font-bold text-3xl dark:text-white mb-10 ">
+                <h1 className="font-bold text-3xl text-primary mb-10 ">
                   {" "}
-                  Medical The Guardian
+                  {medical.productName}
                 </h1>
-                <p className="dark:text-white ">
-                  New technology that allows for daily medications to instead be
-                  taken just once a week or month could transform the lives of
-                  people with conditions ranging from schizophrenia to opioid
-                  addiction, researchers have said.
-                </p>
+                <p className="dark:text-white ">{medical.productDescription}</p>
                 <div className="flex justify-between w-[90%] mt-10 dark:text-white">
                   <p className="font-bold">
                     available items :{" "}
-                    <span className="text-primary font-semibold">20 Items</span>{" "}
+                    <span className="text-primary font-semibold">Yes</span>{" "}
                   </p>
                   <p className="font-bold">
                     price :{" "}
-                    <span className="text-primary font-semibold">3000 Rwf</span>
+                    <span className="text-primary font-semibold">
+                      {medical.productPrice} Rwf
+                    </span>
                   </p>
                 </div>
               </div>
@@ -120,7 +160,7 @@ function MapPage() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-            <Marker position={originPosition} icon={createLabelIcon("Seller ")}>
+            <Marker position={originPosition} icon={createLabelIcon("Me ")}>
               <Popup>
                 Origin: ({origin.lat}, {origin.lng})
               </Popup>
@@ -141,6 +181,8 @@ function MapPage() {
     </>
   );
 }
+
+///todo this need to be checked 
 
 // function Routing({ position, destination }) {
 //   React.useEffect(() => {
