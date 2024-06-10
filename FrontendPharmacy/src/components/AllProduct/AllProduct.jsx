@@ -1,123 +1,143 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Product from "../cardFront/Product";
 import Image from "../../assets/hero/store.png";
 
-const dummyData = [
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Tchami",
-    location: "Remera KN 250 St",
-    price: 900,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 2",
-    location: "Remera KN 250 St",
-    price: 950,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 3",
-    location: "Remera KN 250 St",
-    price: 850,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 3",
-    location: "Remera KN 250 St",
-    price: 850,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Tchami",
-    location: "Remera KN 250 St",
-    price: 900,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 2",
-    location: "Remera KN 250 St",
-    price: 950,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 3",
-    location: "Remera KN 250 St",
-    price: 850,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 3",
-    location: "Remera KN 250 St",
-    price: 850,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Tchami",
-    location: "Remera KN 250 St",
-    price: 900,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 2",
-    location: "Remera KN 250 St",
-    price: 950,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 3",
-    location: "Remera KN 250 St",
-    price: 850,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 3",
-    location: "Remera KN 250 St",
-    price: 850,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Tchami",
-    location: "Remera KN 250 St",
-    price: 900,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 2",
-    location: "Remera KN 250 St",
-    price: 950,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 3",
-    location: "Remera KN 250 St",
-    price: 850,
-  },
-  {
-    productImage: Image,
-    productName: "prastamol",
-    SellerName: "Seller 3",
-    location: "Remera KN 250 St",
-    price: 850,
-  },
-];
+// const dummyData = [
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Tchami",
+//     location: "Remera KN 250 St",
+//     price: 900,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 2",
+//     location: "Remera KN 250 St",
+//     price: 950,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 3",
+//     location: "Remera KN 250 St",
+//     price: 850,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 3",
+//     location: "Remera KN 250 St",
+//     price: 850,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Tchami",
+//     location: "Remera KN 250 St",
+//     price: 900,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 2",
+//     location: "Remera KN 250 St",
+//     price: 950,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 3",
+//     location: "Remera KN 250 St",
+//     price: 850,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 3",
+//     location: "Remera KN 250 St",
+//     price: 850,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Tchami",
+//     location: "Remera KN 250 St",
+//     price: 900,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 2",
+//     location: "Remera KN 250 St",
+//     price: 950,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 3",
+//     location: "Remera KN 250 St",
+//     price: 850,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 3",
+//     location: "Remera KN 250 St",
+//     price: 850,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Tchami",
+//     location: "Remera KN 250 St",
+//     price: 900,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 2",
+//     location: "Remera KN 250 St",
+//     price: 950,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 3",
+//     location: "Remera KN 250 St",
+//     price: 850,
+//   },
+//   {
+//     productImage: Image,
+//     productName: "prastamol",
+//     SellerName: "Seller 3",
+//     location: "Remera KN 250 St",
+//     price: 850,
+//   },
+// ];
 const AllProduct = () => {
+  const [medical, setMedical] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get("http://localhost:5000/api/product", {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: localStorage.getItem("HeaderToken"),
+          },
+        });
+        setMedical(result.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="container mt-10 min-h-[300px]">
       {/* Header Title  */}
@@ -129,15 +149,16 @@ const AllProduct = () => {
       </div>
       {/* Body container for all Product */}
       <div className="inline-grid grid-cols-1 sm:grid-cols-4 gap-4 m-7">
-        {dummyData.map((el, i) => (
+        {medical.map((el, i) => (
           <>
-            <div key={i} className="flex m-0">
+            <div key={el.id} id={el.id} className="flex m-0">
               <Product
-                productImage={el.productImage}
+                productImage={el.productPictures}
                 productName={el.productName}
                 SellerName={el.SellerName}
                 location={el.location}
-                price={el.price}
+                price={el.productPrice}
+                id={el.id}
               />
             </div>
           </>
