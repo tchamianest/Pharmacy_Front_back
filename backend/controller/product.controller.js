@@ -41,3 +41,29 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ status: "Error", Error: error.message });
   }
 };
+
+export const SellerProduct = async (req, res) => {
+  try {
+    const user = req.user.dataValues.id;
+    const Medicals = await Product.findAll({ where: { sellerId: user } });
+    if (!Medicals) {
+      res.status(200).json({ error: "you dont have any Product" });
+    }
+
+    res.status(200).json({ data: Medicals });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server Error" });
+  }
+};
+
+export const AllProduct = async (req, res) => {
+  try {
+    const AllMedicals = await Product.findAll({});
+    if (!AllMedicals) {
+      res.status(400).json({ error: "The markert are empty" });
+    }
+    res.status(200).json({ data: AllMedicals });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error " });
+  }
+};
