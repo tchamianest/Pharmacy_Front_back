@@ -1,5 +1,6 @@
 import express from "express";
 import Product from "../models/product.js";
+import User from "../models/user.js";
 import uploadImage from "../utils/cloudinary.utils.js";
 
 export const createProduct = async (req, res) => {
@@ -65,5 +66,18 @@ export const AllProduct = async (req, res) => {
     res.status(200).json({ data: AllMedicals });
   } catch (error) {
     res.status(500).json({ error: "Internal server error " });
+  }
+};
+
+export const OneProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const Productwithuser = await Product.findOne({
+      where: { id: id },
+      include: [],
+    });
+    res.status(200).json({ data: Productwithuser });
+  } catch (error) {
+    res.status(500).json({ Error: error });
   }
 };
