@@ -19,6 +19,10 @@ Product.init(
         notEmpty: true,
       },
     },
+    locationName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     location: {
       type: DataTypes.STRING,
       allowNull: false,

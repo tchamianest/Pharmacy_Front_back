@@ -10,8 +10,8 @@ import Footer from "../Footer/Footer";
 import axios from "axios";
 
 const origin = { lat: -1.969733, lng: 30.061962 };
-let destination;
-// let destination = { lat: -1.79782, lng: 30.07398 };
+// let destination;
+let destination = { lat: -1.79782, lng: 30.07398 };
 
 function Routing({ start, end }) {
   const map = useMap();
@@ -181,8 +181,6 @@ function MapPage() {
     </>
   );
 }
-
-///todo this need to be checked 
 
 // function Routing({ position, destination }) {
 //   React.useEffect(() => {

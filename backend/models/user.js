@@ -49,7 +49,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-
+    location: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     preferredLanguage: {
       type: DataTypes.STRING,
       allowNull: true,
