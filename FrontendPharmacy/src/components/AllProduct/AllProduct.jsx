@@ -156,7 +156,7 @@ const AllProduct = () => {
                 productImage={el.productPictures}
                 productName={el.productName}
                 SellerName={el.SellerName}
-                location={el.location}
+                location={el.locationName.split(" ")[2]}
                 price={el.productPrice}
                 id={el.id}
               />

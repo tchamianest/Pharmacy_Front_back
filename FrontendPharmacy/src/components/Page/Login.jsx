@@ -43,6 +43,7 @@ const Login = () => {
             lastName: formdata.surname,
             email: formdata.email,
             password: formdata.password,
+            location: formdata.location,
           },
           {
             headers: {
@@ -84,7 +85,7 @@ const Login = () => {
           email: response.data.user.email,
           preferredLanguage: response.data.user.preferredLanguage,
           profileImage: response.data.user.profileImage,
-          Location: response.data.user.whereYouLive,
+          Location: response.data.user.location,
         };
         localStorage.setItem("HeaderToken", response.data.token);
         localStorage.setItem("user", JSON.stringify(user));
@@ -200,7 +201,7 @@ const Login = () => {
                       <input
                         type="text"
                         name="location"
-                        placeholder="Location"
+                        placeholder="Enter Province District sector"
                         onChange={handleChange}
                         className="border rounded-lg border-gray-400 py-1 px-2 w-full"
                       />

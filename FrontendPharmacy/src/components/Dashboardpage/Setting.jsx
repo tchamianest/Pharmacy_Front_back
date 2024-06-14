@@ -12,6 +12,7 @@ const Setting = () => {
     language: "",
     phone: "",
     image: null,
+    location: "",
     whereYouLive: "",
   };
   const [data, setData] = useState(initialstate);
@@ -72,6 +73,7 @@ const Setting = () => {
   formdata.append("lastName", data.lastname);
   formdata.append("profileImage", data.image);
   formdata.append("phone", data.phone);
+  formdata.append("location", data.location);
   formdata.append("preferredLanguage", data.language);
   formdata.append("whereYouLive", data.whereYouLive);
   const Submitbutton = async (event) => {
@@ -151,6 +153,17 @@ const Setting = () => {
               placeholder="Phone number"
               name="phone"
               value={data.phone}
+              onChange={(event) => changeHandle(event)}
+              className="w-[70%] p-1 rounded-sm"
+            />
+          </div>
+          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
+            <p className="text-black font-semibold p-2">Location :</p>
+            <input
+              type="text"
+              placeholder="province District sector "
+              name="location"
+              value={data.location}
               onChange={(event) => changeHandle(event)}
               className="w-[70%] p-1 rounded-sm"
             />

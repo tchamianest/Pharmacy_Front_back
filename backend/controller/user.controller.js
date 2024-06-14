@@ -6,12 +6,13 @@ import uploadImage from "../utils/cloudinary.utils.js";
 
 export const userSignup = async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, location } = req.body;
     const userPassword = await passwordEncrypt(password);
     const newUser = await User.create({
       firstName,
       lastName,
       email,
+      location,
       password: userPassword,
     });
 
@@ -82,6 +83,7 @@ export const editUser = async (req, res) => {
       firstName,
       lastName,
       phone,
+      location,
       preferredLanguage,
       whereYouLive,
       email,
@@ -118,6 +120,7 @@ export const editUser = async (req, res) => {
       lastName: lastName || user?.lastName,
       profileImage: uploadedImage || user?.profileImage,
       phone: phone || user?.phone,
+      location: location || user.location,
       preferredLanguage: preferredLanguage || user?.preferredLanguage,
       whereYouLive: whereYouLive || user?.whereYouLive,
       email: email || user?.email,

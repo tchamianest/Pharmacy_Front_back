@@ -22,6 +22,10 @@ module.exports = {
         onDelete: "cascade",
         onUpdate: "cascade",
       },
+      locationName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       location: {
         type: Sequelize.STRING,
         allowNull: false,
