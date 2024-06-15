@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { getlocation } from "../../utils/locationFunction";
 
 import TopSection from "./TopSection";
 const Setting = () => {
@@ -16,36 +17,6 @@ const Setting = () => {
     whereYouLive: "",
   };
   const [data, setData] = useState(initialstate);
-  const getlocation = () => {
-    return new Promise((resolve, reject) => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            resolve(`Latitude: ${latitude}, Longitude: ${longitude}`);
-          },
-          (error) => {
-            switch (error.code) {
-              case error.PERMISSION_DENIED:
-                reject("User denied the request for Geolocation.");
-                break;
-              case error.POSITION_UNAVAILABLE:
-                reject("Location information is unavailable.");
-                break;
-              case error.TIMEOUT:
-                reject("The request to get user location timed out.");
-                break;
-              default:
-                reject("An unknown error occurred.");
-                break;
-            }
-          }
-        );
-      } else {
-        reject("Geolocation is not supported by this browser.");
-      }
-    });
-  };
   useEffect(() => {
     const location = async () => {
       const location = await getlocation();
@@ -91,6 +62,7 @@ const Setting = () => {
           },
         }
       );
+      console.log(response.data.user);
       const user = {
         name1: response.data.user.firstName,
         name2: response.data.user.lastName,
@@ -98,7 +70,7 @@ const Setting = () => {
         email: response.data.user.email,
         preferredLanguage: response.data.user.preferredLanguage,
         profileImage: response.data.user.profileImage,
-        Location: response.data.user.whereYouLive,
+        Location: response.data.user.location,
       };
       localStorage.setItem("user", JSON.stringify(user));
       setData(initialstate);

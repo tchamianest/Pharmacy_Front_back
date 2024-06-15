@@ -8,11 +8,12 @@ import "leaflet-routing-machine";
 import Navbar from "../navbar/Navbar";
 import Footer from "../Footer/Footer";
 import axios from "axios";
+import { getlocation } from "../../utils/locationFunction";
 
-const origin = { lat: -1.969733, lng: 30.061962 };
 // let destination;
-let destination = { lat: -1.79782, lng: 30.07398 };
+let destination = { lat: -2.79782, lng: 39.07398 };
 
+// const origin = { lat: -1.969733, lng: 30.061962 };
 function Routing({ start, end }) {
   const map = useMap();
 
@@ -31,21 +32,29 @@ function Routing({ start, end }) {
 }
 
 function MapPage() {
+  const [origin, setOrigin] = useState({ lat: 0, long: 0 });
+  useEffect(() => {
+    const location = async () => {
+      const locations = await getlocation();
+      const realdata = locations.split(" ");
+      console.log("Real location-------", realdata);
+      setOrigin({ lat: realdata[1], long: realdata[3] });
+    };
+    location();
+  }, []);
   const [medical, setMedical] = useState([]);
 
   useEffect(() => {
     const data1 = async () => {
       const desti = await medical.location;
+      console.log("destination------", desti);
       const data = desti.split(" ");
       destination = { lat: data[1], lng: data[3] };
       console.log(destination);
     };
     data1();
   }, []);
-  // const data = desti.split(" ");
-  // const lat = Number(data[1]);
-  // const long = Number(data[3]);
-  // console.log(lat, long);
+
   const originPosition = [origin.lat, origin.lng];
   const destinationPosition = [destination.lat, destination.lng];
 
@@ -160,7 +169,7 @@ function MapPage() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-            <Marker position={originPosition} icon={createLabelIcon("Me ")}>
+            <Marker position={originPosition} icon={createLabelIcon("Me")}>
               <Popup>
                 Origin: ({origin.lat}, {origin.lng})
               </Popup>
