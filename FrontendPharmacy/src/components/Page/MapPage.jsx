@@ -11,9 +11,7 @@ import axios from "axios";
 import { getlocation } from "../../utils/locationFunction";
 
 // let destination;
-let destination = { lat: -2.79782, lng: 39.07398 };
 
-// const origin = { lat: -1.969733, lng: 30.061962 };
 function Routing({ start, end }) {
   const map = useMap();
 
@@ -32,31 +30,43 @@ function Routing({ start, end }) {
 }
 
 function MapPage() {
-  const [origin, setOrigin] = useState({ lat: 0, long: 0 });
+  const [niyo, setNiyo] = useState(true);
+  const [origin, setOrigin] = useState([]);
   useEffect(() => {
     const location = async () => {
       const locations = await getlocation();
       const realdata = locations.split(" ");
-      console.log("Real location-------", realdata);
       setOrigin({ lat: realdata[1], long: realdata[3] });
+      if (origin) {
+        console.log("origini data", realdata);
+      }
     };
     location();
   }, []);
   const [medical, setMedical] = useState([]);
+  const [destin, setDestination] = useState(null);
 
   useEffect(() => {
     const data1 = async () => {
-      const desti = await medical.location;
-      console.log("destination------", desti);
-      const data = desti.split(" ");
-      destination = { lat: data[1], lng: data[3] };
-      console.log(destination);
+      if (medical.location) {
+        const desti = await medical.location;
+        const data = desti.split(" ");
+        const newDestination = [parseFloat(data[1]), parseFloat(data[3])];
+        setDestination(newDestination);
+      }
     };
     data1();
-  }, []);
+  }, [medical.location]);
 
-  const originPosition = [origin.lat, origin.lng];
-  const destinationPosition = [destination.lat, destination.lng];
+  let originPosition = [-1.969596, 30.061921];
+  let destinationPosition = [-1.969596, 30.070931];
+  if (origin.lat && destin) {
+    const lat = origin.lat.slice(0, -1);
+    originPosition = [Number(lat), Number(origin.long)];
+    destinationPosition = destin;
+    console.log("origin two", originPosition);
+    console.log("destin----", destinationPosition);
+  }
 
   const createLabelIcon = (label) => {
     const html = `
@@ -94,7 +104,6 @@ function MapPage() {
 
     fetchData();
   }, []);
-  console.log(medical);
   return (
     <>
       <div className="flex justify-center dark:bg-gray-800 items-center flex-col  gap-8">
@@ -160,53 +169,49 @@ function MapPage() {
           <div className="w-[100%] h-[2px] dark:bg-white bg-black mt-4">-</div>
         </div>
         <div className="flex items-center z-30 justify-center content-center w-[75%] mb-10 bg-gray-400 border h-full min-h-[200px]">
-          <MapContainer
-            center={originPosition}
-            zoom={13}
-            style={{ height: "70vh", width: "100%" }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            <Marker position={originPosition} icon={createLabelIcon("Me")}>
-              <Popup>
-                Origin: ({origin.lat}, {origin.lng})
-              </Popup>
-            </Marker>
-            <Marker
-              position={destinationPosition}
-              icon={createLabelIcon("Buyer")}
+          {niyo && (
+            <MapContainer
+              center={originPosition}
+              zoom={13}
+              style={{ height: "70vh", width: "100%" }}
             >
-              <Popup>
-                Destination: ({destination.lat}, {destination.lng})
-              </Popup>
-            </Marker>
-            <Routing start={origin} end={destination} />
-          </MapContainer>
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <Marker
+                position={originPosition}
+                icon={createLabelIcon("Me")}
+                draggable={false}
+              >
+                <Popup>
+                  Origin: ({originPosition[0]}, {originPosition[1]})
+                </Popup>
+              </Marker>
+              <Marker
+                position={destinationPosition}
+                icon={createLabelIcon("Buyer")}
+                draggable={false}
+              >
+                <Popup>
+                  Destination: ({destinationPosition[0]},{" "}
+                  {destinationPosition[1]})
+                </Popup>
+              </Marker>
+              <Routing
+                start={{ lat: originPosition[0], lng: originPosition[1] }}
+                end={{
+                  lat: destinationPosition[0],
+                  lng: destinationPosition[1],
+                }}
+              />
+            </MapContainer>
+          )}
         </div>
       </div>
       <Footer />
     </>
   );
 }
-
-// function Routing({ position, destination }) {
-//   React.useEffect(() => {
-//     if (position && destination) {
-//       const map = window.L.map("map");
-
-//       window.L.Routing.control({
-//         waypoints: [
-//           window.L.latLng(position[0], position[1]),
-//           window.L.latLng(destination[0], destination[1]),
-//         ],
-//         routeWhileDragging: true,
-//       }).addTo(map);
-//     }
-//   }, [position, destination]);
-
-//   return null;
-// }
 
 export default MapPage;
