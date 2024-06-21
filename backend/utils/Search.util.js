@@ -2,7 +2,7 @@ import { Op } from "sequelize";
 import Sequelize from "sequelize";
 
 export const buildWhereClause = async (queryParams) => {
-  const { name } = queryParams;
+  const { name, locationName } = queryParams;
   const whereClause = {};
 
   if (name) {

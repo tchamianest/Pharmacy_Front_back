@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "../Footer/Footer";
 import Navbar from "../navbar/Navbar";
-import Product from "../cardFront/Product";
 import Cardseacrh from "../cardFront/Cardseacrh";
 
 function SearchPage() {
@@ -23,6 +22,7 @@ function SearchPage() {
               <p className="font-bold text-2xl">Search :</p>
               <h1 className="text-xl text-black/40">Product Name searched</h1>
             </div>
+            {/* New  */}
             <Cardseacrh />
             <Cardseacrh />
             <Cardseacrh />
