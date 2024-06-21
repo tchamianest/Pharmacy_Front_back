@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { getlocation } from "../../utils/locationFunction";
+import { reverseGeocode } from "../../utils/ApiReverse";
 
 import TopSection from "./TopSection";
 const Setting = () => {
@@ -19,8 +20,16 @@ const Setting = () => {
   const [data, setData] = useState(initialstate);
   useEffect(() => {
     const location = async () => {
-      const location = await getlocation();
-      setData({ ...data, ["whereYouLive"]: location });
+      const locationString = await getlocation();
+      const data = locationString.split(" ");
+      const Lat = Number(data[1].slice(0, -1));
+      const Long = Number(data[3]);
+      const locationName = await reverseGeocode(Lat, Long);
+      setData((prevData) => ({
+        ...prevData,
+        whereYouLive: locationString,
+        location: locationName,
+      }));
     };
     location();
   }, []);
@@ -125,17 +134,6 @@ const Setting = () => {
               placeholder="Phone number"
               name="phone"
               value={data.phone}
-              onChange={(event) => changeHandle(event)}
-              className="w-[70%] p-1 rounded-sm"
-            />
-          </div>
-          <div className="flex gap-10 item-center content-center justify-between w-[90%] m-5">
-            <p className="text-black font-semibold p-2">Location :</p>
-            <input
-              type="text"
-              placeholder="province District sector "
-              name="location"
-              value={data.location}
               onChange={(event) => changeHandle(event)}
               className="w-[70%] p-1 rounded-sm"
             />
