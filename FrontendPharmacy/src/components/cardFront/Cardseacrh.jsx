@@ -1,6 +1,3 @@
-import React from "react";
-import store from "../../assets/hero/store.png";
-
 function Cardseacrh(props) {
   return (
     <div className="w-[80%] shadow-md max-h-[300px] bg-gray-200 p-5 rounded-sm ">
@@ -20,9 +17,13 @@ function Cardseacrh(props) {
 
           {props.location && (
             <div className="flex justify-end mt-5 gap-3 left">
-              <button className="p-3 text-right bg-primary/95 rounded-full text-white hover:bg-secondary">
+              <a
+                href={`/product?id=${props.id}`}
+                className="text-center bg-blue-400 text-white font-bold p-1 rounded-full hover:bg-primary"
+              >
+                {" "}
                 View Location
-              </button>
+              </a>
             </div>
           )}
         </div>

@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 
 const Product = (props) => {
   return (
-    <div className="rounded-xl shadow-lg max-w-[330px] m-2 dark:bg-gray-200 bg-gray-100">
+    <div className="rounded-sm shadow-lg w-[300px] m-2 dark:bg-gray-200 bg-gray-100">
       <div className="p-5 flex flex-col">
-        <div className="rounded-xl overflow-hidden h-[150px]">
-          <img src={props.productImage} alt="" />
+        <div className="rounded-sm overflow-hidden h-[150px] w-full">
+          <img
+            src={props.productImage}
+            alt=""
+            className="object-cover w-full"
+          />
         </div>
         <h5 className="text-1xl md:text-2xl  font-medium mt-3 text-secondary">
           {props.productName}
@@ -38,7 +41,7 @@ const Product = (props) => {
         </div>
         <a
           href={`/product?id=${props.id}`}
-          className="text-center bg-blue-400 text-white font-bold p-1 rounded-full hover:bg-primary"
+          className="text-center bg-blue-400 text-white font-bold p-1 rounded-sm hover:bg-primary"
         >
           {" "}
           View Location

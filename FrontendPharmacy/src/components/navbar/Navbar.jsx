@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DarkMode from "./DarkMode";
 import Logo from "../../assets/logo.png";
 import { IoMdSearch } from "react-icons/io";
@@ -23,6 +23,7 @@ const Dropdownlink = [
 const Navbar = () => {
   console.log();
   const [Search, setSearch] = useState("");
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const handleKeyDown = (events) => {
     if (events.key === "Enter") {
@@ -33,6 +34,15 @@ const Navbar = () => {
     e.preventDefault();
     navigate(`/Search?name=${Search}`);
   }
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const data = JSON.parse(userData);
+      setUser(data);
+      console.log(data);
+    }
+  }, []);
+
   return (
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 z-40 top-0 sticky w-screen">
       {/* Upper Navabar */}
@@ -55,7 +65,7 @@ const Navbar = () => {
                 placeholder="search Medical..."
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-[200px] dark:border-gray-500 dark:bg-gray-800 sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full h-9 border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary"
+                className="w-[200px] dark:border-gray-500 dark:bg-gray-800 sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-sm h-9 border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary"
               />
               <IoMdSearch
                 onClick={handleClick}
@@ -63,7 +73,7 @@ const Navbar = () => {
                group-hover:text-primary  right-2"
               />
             </div>
-            <button
+            {/* <button
               onClick={() => alert("The order feature is not yet available ")}
               className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group "
             >
@@ -71,7 +81,7 @@ const Navbar = () => {
                 Order
               </span>
               <FaCartShopping className=" text-xl text-white drop-shadow-sm cursor-pointer" />
-            </button>
+            </button> */}
             {/* dark mode switch  */}
             <div>
               <DarkMode />
@@ -120,9 +130,24 @@ const Navbar = () => {
             </div>
           </li>
           <li className="px-5">
-            <button className=" text-white bg-primary px-4 py-1  hover:bg-primary/70 rounded-2xl">
-              <a href="/login">Login </a>
-            </button>
+            {!user ? (
+              <button className=" text-white bg-primary px-4 py-1  hover:bg-primary/70 rounded-2xl">
+                <a href="/login">Login </a>
+              </button>
+            ) : (
+              <a href="/dashboard">
+                <div className="flex justify-center items-center cursor-pointer gap-3 py-1 my-3  px-3">
+                  <img
+                    src={user.profileImage}
+                    alt="Image"
+                    className="w-[40px] rounded-full"
+                  />
+                  <a href="/dashboard" className="hover:text-blue-600">
+                    {user.name2}
+                  </a>
+                </div>
+              </a>
+            )}
           </li>
         </ul>
       </div>

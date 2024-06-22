@@ -29,6 +29,9 @@ export const createProduct = async (req, res) => {
 
     const NewProduct = await Product.create({
       sellerId: req.user.dataValues.id,
+      SellerName: req.user.dataValues.firstName,
+      email: req.user.dataValues.email,
+      Phone: req.user.dataValues.phone,
       location: req.user.dataValues.whereYouLive,
       locationName: req.user.dataValues.location,
       productName: productName,
