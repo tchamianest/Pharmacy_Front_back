@@ -2,122 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Product from "../cardFront/Product";
-import Image from "../../assets/hero/store.png";
 
-// const dummyData = [
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Tchami",
-//     location: "Remera KN 250 St",
-//     price: 900,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 2",
-//     location: "Remera KN 250 St",
-//     price: 950,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 3",
-//     location: "Remera KN 250 St",
-//     price: 850,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 3",
-//     location: "Remera KN 250 St",
-//     price: 850,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Tchami",
-//     location: "Remera KN 250 St",
-//     price: 900,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 2",
-//     location: "Remera KN 250 St",
-//     price: 950,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 3",
-//     location: "Remera KN 250 St",
-//     price: 850,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 3",
-//     location: "Remera KN 250 St",
-//     price: 850,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Tchami",
-//     location: "Remera KN 250 St",
-//     price: 900,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 2",
-//     location: "Remera KN 250 St",
-//     price: 950,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 3",
-//     location: "Remera KN 250 St",
-//     price: 850,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 3",
-//     location: "Remera KN 250 St",
-//     price: 850,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Tchami",
-//     location: "Remera KN 250 St",
-//     price: 900,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 2",
-//     location: "Remera KN 250 St",
-//     price: 950,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 3",
-//     location: "Remera KN 250 St",
-//     price: 850,
-//   },
-//   {
-//     productImage: Image,
-//     productName: "prastamol",
-//     SellerName: "Seller 3",
-//     location: "Remera KN 250 St",
-//     price: 850,
-//   },
-// ];
 const AllProduct = () => {
   const [medical, setMedical] = useState([]);
   useEffect(() => {
@@ -137,7 +22,7 @@ const AllProduct = () => {
 
     fetchData();
   }, []);
-
+  console.log("Medical", medical);
   return (
     <div className="container mt-10 min-h-[300px]">
       {/* Header Title  */}

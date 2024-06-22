@@ -30,7 +30,6 @@ function Routing({ start, end }) {
 }
 
 function MapPage() {
-  const [niyo, setNiyo] = useState(true);
   const [origin, setOrigin] = useState([]);
   useEffect(() => {
     const location = async () => {
@@ -64,8 +63,7 @@ function MapPage() {
     const lat = origin.lat.slice(0, -1);
     originPosition = [Number(lat), Number(origin.long)];
     destinationPosition = destin;
-    console.log("origin two", originPosition);
-    console.log("destin----", destinationPosition);
+
   }
 
   const createLabelIcon = (label) => {
@@ -104,6 +102,7 @@ function MapPage() {
 
     fetchData();
   }, []);
+  console.log(medical);
   return (
     <>
       <div className="flex justify-center dark:bg-gray-800 items-center flex-col  gap-8">
@@ -148,17 +147,17 @@ function MapPage() {
               <h1 className="font-semibold text-primary text-1xl">
                 Seller Name :
               </h1>
-              <p className="dark:text-white text-1xl">Kalisa daniel</p>
+              <p className="dark:text-white text-1xl">{medical.SellerName}</p>
             </div>
             <div className="flex gap-6 items-center">
               <h1 className="font-semibold text-primary text-1xl">
                 Phone Number :
               </h1>
-              <p className="dark:text-white text-1xl">+250-789-098-099</p>
+              <p className="dark:text-white text-1xl">{medical.Phone}</p>
             </div>
             <div className="flex gap-6 items-center">
               <h1 className="font-semibold text-primary text-1xl">Email :</h1>
-              <p className="dark:text-white text-1xl">Test@gmail.com</p>
+              <p className="dark:text-white text-1xl">{medical.email}</p>
             </div>
           </div>
         </div>
@@ -169,44 +168,42 @@ function MapPage() {
           <div className="w-[100%] h-[2px] dark:bg-white bg-black mt-4">-</div>
         </div>
         <div className="flex items-center z-30 justify-center content-center w-[75%] mb-10 bg-gray-400 border h-full min-h-[200px]">
-          {niyo && (
-            <MapContainer
-              center={originPosition}
-              zoom={13}
-              style={{ height: "70vh", width: "100%" }}
+          <MapContainer
+            center={originPosition}
+            zoom={13}
+            style={{ height: "70vh", width: "100%" }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <Marker
+              position={originPosition}
+              icon={createLabelIcon("Me")}
+              draggable={false}
             >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
-              <Marker
-                position={originPosition}
-                icon={createLabelIcon("Me")}
-                draggable={false}
-              >
-                <Popup>
-                  Origin: ({originPosition[0]}, {originPosition[1]})
-                </Popup>
-              </Marker>
-              <Marker
-                position={destinationPosition}
-                icon={createLabelIcon("Buyer")}
-                draggable={false}
-              >
-                <Popup>
-                  Destination: ({destinationPosition[0]},{" "}
-                  {destinationPosition[1]})
-                </Popup>
-              </Marker>
-              <Routing
-                start={{ lat: originPosition[0], lng: originPosition[1] }}
-                end={{
-                  lat: destinationPosition[0],
-                  lng: destinationPosition[1],
-                }}
-              />
-            </MapContainer>
-          )}
+              <Popup>
+                Origin: ({originPosition[0]}, {originPosition[1]})
+              </Popup>
+            </Marker>
+            <Marker
+              position={destinationPosition}
+              icon={createLabelIcon("Pharmacy")}
+              draggable={false}
+            >
+              <Popup>
+                Destination: ({destinationPosition[0]}, {destinationPosition[1]}
+                )
+              </Popup>
+            </Marker>
+            <Routing
+              start={{ lat: originPosition[0], lng: originPosition[1] }}
+              end={{
+                lat: destinationPosition[0],
+                lng: destinationPosition[1],
+              }}
+            />
+          </MapContainer>
         </div>
       </div>
       <Footer />

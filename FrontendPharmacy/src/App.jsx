@@ -1,10 +1,10 @@
-import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./Route/ProtectedRoute";
 import HomePage from "./components/HomePage";
 import MapPage from "./components/Page/MapPage";
 import Login from "./components/Page/Login";
 import SearchPage from "./components/Page/SearchPage";
+
 const App = () => {
   return (
     <BrowserRouter>
