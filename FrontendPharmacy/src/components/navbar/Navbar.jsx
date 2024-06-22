@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import DarkMode from "./DarkMode";
 import Logo from "../../assets/logo.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 //MENU ARRAY
 const Menu = [
@@ -20,6 +21,18 @@ const Dropdownlink = [
   { id: 1, name: "Voice Call", link: "/#" },
 ];
 const Navbar = () => {
+  console.log();
+  const [Search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const handleKeyDown = (events) => {
+    if (events.key === "Enter") {
+      navigate(`/Search?name=${Search}`);
+    }
+  };
+  function handleClick(e) {
+    e.preventDefault();
+    navigate(`/Search?name=${Search}`);
+  }
   return (
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 z-40 top-0 sticky w-screen">
       {/* Upper Navabar */}
@@ -27,7 +40,7 @@ const Navbar = () => {
         <div className="container justify-between flex items-center">
           <div>
             <a
-              href="#"
+              href="/"
               className="font-bold text-1xl sm:text-2xl flex gap-2 text-blue-400 dark:text-white"
             >
               <img src={Logo} alt="Logo" className="w-10" />
@@ -40,10 +53,13 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="search Medical..."
+                onKeyDown={handleKeyDown}
+                onChange={(e) => setSearch(e.target.value)}
                 className="w-[200px] dark:border-gray-500 dark:bg-gray-800 sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full h-9 border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary"
               />
               <IoMdSearch
-                className="text-gray-500 absolute top-1/2 -translate-y-1/2
+                onClick={handleClick}
+                className="text-gray-500 cursor-pointer absolute top-1/2 -translate-y-1/2
                group-hover:text-primary  right-2"
               />
             </div>
