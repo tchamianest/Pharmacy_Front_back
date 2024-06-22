@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DarkMode from "./DarkMode";
 import Logo from "../../assets/logo.png";
 import { IoMdSearch } from "react-icons/io";
-import { FaCartShopping } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -131,7 +130,7 @@ const Navbar = () => {
           </li>
           <li className="px-5">
             {!user ? (
-              <button className=" text-white bg-primary px-4 py-1  hover:bg-primary/70 rounded-2xl">
+              <button className=" text-white bg-primary px-4 py-1  hover:bg-primary/70 rounded-sm">
                 <a href="/login">Login </a>
               </button>
             ) : (
