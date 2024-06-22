@@ -31,7 +31,8 @@ function HomeDash() {
 
   const navigate = useNavigate();
   const Logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("user");
+    localStorage.removeItem("HeaderToken");
     navigate("/");
   };
   return (
