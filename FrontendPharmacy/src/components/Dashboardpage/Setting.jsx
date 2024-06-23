@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TopSection from "./TopSection";
 import ProfilePage from "../Dashboardpage/Profile";
 import Password from "./Password";
@@ -39,18 +39,20 @@ function Setting() {
       <TopSection name="Setting" />
       <div className="w-full flex flex-col gap-10 items-center justify-center mt-5">
         <div
-          className="bg-blue-600 w-[60%] rounded-sm min-h-[200px] flex flex-col items-center justify-center cursor-pointer hover:scale-105 duration-200"
+          className="bg-blue-600 w-[60%] rounded-sm min-h-[270px] flex flex-col items-center justify-center cursor-pointer hover:scale-105 duration-200"
           onClick={() => handleClick("Profile")}
         >
-          <img src="./profile.png" alt="" className="w-[100px] mt-10" />
+          <img src="./profile.png" alt="" className="w-[130px] mt-10" />
           <h1 className="mt-5 text-2xl text-white font-bold">Edit Profile</h1>
         </div>
         <div
           onClick={() => handleClick("password")}
-          className="bg-red-600  w-[60%] rounded-sm min-h-[200px] flex flex-col items-center justify-center cursor-pointer hover:scale-105 duration-200"
+          className="bg-red-600  w-[60%] rounded-sm min-h-[270px] flex flex-col items-center justify-center cursor-pointer hover:scale-105 duration-200"
         >
-          <img src="./password.png" alt="" className="w-[100px] mt-10" />
-          <h1 className="mt-5 text-2xl text-white font-bold">Edit Password</h1>
+          <img src="./password.png" alt="" className="w-[130px] mt-10" />
+          <h1 className="mt-5 text-2xl text-white font-bold">
+            Change Password
+          </h1>
         </div>
       </div>
     </div>

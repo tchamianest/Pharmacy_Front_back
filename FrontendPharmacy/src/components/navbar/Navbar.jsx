@@ -41,18 +41,18 @@ const Navbar = () => {
       console.log(data);
     }
   }, []);
-
+  const [showMenu, setMenu] = useState(false);
   return (
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 z-40 top-0 sticky w-screen">
       {/* Upper Navabar */}
       <div className="bg-primary/20 py-2 flex">
         <div className="container justify-between flex items-center">
-          <div>
+          <div className="">
             <a
               href="/"
-              className="font-bold text-1xl sm:text-2xl flex gap-2 text-blue-400 dark:text-white"
+              className="font-bold sm:text-1xl text-[12px] sm:text-2xl flex gap-2 text-blue-400 dark:text-white"
             >
-              <img src={Logo} alt="Logo" className="w-10" />
+              <img src={Logo} alt="Logo" className="sm:w-10 w-7" />
               Rwanda Pharmacy
             </a>
           </div>
@@ -84,13 +84,14 @@ const Navbar = () => {
             {/* dark mode switch  */}
             <div>
               <DarkMode />
+              <img src="" alt="" />
             </div>
           </div>
           {/* Order button  */}
         </div>
       </div>
       {/* Lower Navbar */}
-      <div className="flex justify-center ">
+      <div className=" justify-center flex ">
         <ul className="sm:flex hidden items-center gap-4 py-1">
           {Menu.map((data) => (
             <>
@@ -149,6 +150,44 @@ const Navbar = () => {
             )}
           </li>
         </ul>
+        <div className="sm:hidden w-full justify-center relative  flex  px-3 items-center gap-10 bg-gray-800 p-3">
+          <div className="group relative max-w-[70%] ">
+            <input
+              type="text"
+              placeholder="search ..."
+              onKeyDown={handleKeyDown}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-[150px] dark:border-gray-500 dark:bg-gray-800 sm:w-[130px] group-hover:w-[200px] transition-all duration-300 rounded-sm h-7 tex-[10px] border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary"
+            />
+            <IoMdSearch
+              onClick={handleClick}
+              className="text-gray-500 cursor-pointer absolute top-1/2 -translate-y-1/2
+               group-hover:text-primary  right-2"
+            />
+          </div>
+          <div className="flex-1  ">
+            <img
+              src="./menu.png"
+              alt=""
+              className="h-[20px] float-end cursor-pointer"
+              onClick={() => setMenu(!showMenu)}
+            />
+            {showMenu && (
+              <div className=" p-5 duration-200 bg-gray-800 w-[200px] absolute top-12 right-0 ">
+                <div className="w-full ">
+                  <ul className="flex justify-center items-center flex-col ">
+                    <li className="py-2 flex justify-end hover:text-blue-800 text-white   w-[60%]">
+                      <a href="/product">Product</a>
+                    </li>
+                    <li className="py-2 flex justify-end hover:text-blue-800 text-white  w-[60%]">
+                      <a href="/product">Meadical</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
