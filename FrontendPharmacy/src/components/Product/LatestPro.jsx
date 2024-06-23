@@ -36,13 +36,32 @@ const dummyData = [
   // Add more dummy data as needed
 ];
 const LatestPro = () => {
-  var settings = {
+  const settings = {
     dots: true,
     arrows: true,
     infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
+    responsive: [
+      {
+        breakpoint: 1024, // screens less than 1024px
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600, // screens less than 600px
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+    ],
   };
   return (
     <div className=" bg-gray-900 text-white">
@@ -67,7 +86,7 @@ const LatestPro = () => {
               vitality.
             </p>
           </div>
-          <div className="flex-1 bg-gray-800  max-w-[80%] rounded-lg  text-black p-1 items-center">
+          <div className="flex-1 bg-gray-800 object-cover w-full sm:max-w-[80%] rounded-lg  text-black p-1 sm:items-center">
             <Slider {...settings} className="relative p-0 m-0  ">
               {dummyData.map((el, i) => (
                 <>

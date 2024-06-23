@@ -43,7 +43,7 @@ const Hero = () => {
 
   return (
     <div>
-      <div className=" relative overflow-hidden min-h-[750px] sm:min-h-[550px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
+      <div className=" relative overflow-hidden min-h-[650px] sm:min-h-[550px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
         {/* background shape */}
         <div className="h-[500px] w-[1100px] bg-primary/40 absolute -right-1/4   rounded-3xl rotate-45 -z-9"></div>
         {/* Hero section */}
@@ -53,13 +53,13 @@ const Hero = () => {
               <>
                 <div>
                   <div className="grid grid-cols-1 sm:grid-cols-2">
-                    <div className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
-                      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold">
+                    <div className="flex flex-col justify-center sm:gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
+                      <h1 className="text-3xl sm:text-6xl lg:text-7xl font-bold">
                         {items.title}
                       </h1>
                       <p className="text-sm">{items.description}</p>
                       <div>
-                        <button className=" text-white bg-primary px-5 py-2 mt-10  hover:bg-primary/70 rounded-sm">
+                        <button className=" text-white bg-primary px-5 py-2 sm:mt-10 mt-4 hover:bg-primary/70 rounded-sm">
                           Contact doctor
                         </button>
                       </div>
@@ -69,7 +69,7 @@ const Hero = () => {
                         <img
                           src={items.img}
                           alt=""
-                          className="w-[400px] h-[400px] sm:h-[450px]  sm:w-[450px] sm:scale-105 lg:scale-120 object-contain mx-"
+                          className="w-[300px] h-[300px] sm:h-[450px]  sm:w-[450px] sm:scale-105 lg:scale-120 object-contain mx-"
                         />
                       </div>
                     </div>

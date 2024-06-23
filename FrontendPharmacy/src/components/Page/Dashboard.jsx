@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import HomeDash from "../Dashboardpage/HomeDash";
 import Analytics from "../Dashboardpage/Analytics";
 import Inbox from "../Dashboardpage/Inbox";
 import Medicals from "../Dashboardpage/Medicals";
 import PostMedical from "../Dashboardpage/PostMedical";
 import Setting from "../Dashboardpage/Setting";
-import ProfilePage from "../Dashboardpage/Profile";
 
 function Dashboard() {
   const [open, setOpen] = useState(true);
@@ -53,7 +52,7 @@ function Dashboard() {
     }
   };
   return (
-    <div className="flex ">
+    <div className="flex fixed w-full ">
       <div
         className={` ${
           open ? "w-72" : "w-20 "
@@ -107,7 +106,7 @@ function Dashboard() {
           ))}
         </ul>
       </div>
-      <div className="h-screen flex-1 p-7">{display}</div>
+      <div className="h-screen flex-1 p-7 overflow-auto">{display}</div>
     </div>
   );
 }
