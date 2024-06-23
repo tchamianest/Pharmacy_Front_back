@@ -5,6 +5,7 @@ import Inbox from "../Dashboardpage/Inbox";
 import Medicals from "../Dashboardpage/Medicals";
 import PostMedical from "../Dashboardpage/PostMedical";
 import Setting from "../Dashboardpage/Setting";
+import ProfilePage from "../Dashboardpage/Profile";
 
 function Dashboard() {
   const [open, setOpen] = useState(true);
@@ -45,6 +46,7 @@ function Dashboard() {
       case "Setting":
         setDisplay(<Setting />);
         break;
+
       default:
         setDisplay(<HomeDash />);
         break;
