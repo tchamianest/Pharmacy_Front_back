@@ -20,7 +20,6 @@ const Dropdownlink = [
   { id: 1, name: "Voice Call", link: "/#" },
 ];
 const Navbar = () => {
-  console.log();
   const [Search, setSearch] = useState("");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -38,7 +37,6 @@ const Navbar = () => {
     if (userData) {
       const data = JSON.parse(userData);
       setUser(data);
-      console.log(data);
     }
   }, []);
   const [showMenu, setMenu] = useState(false);
