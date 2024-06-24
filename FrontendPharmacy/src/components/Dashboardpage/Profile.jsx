@@ -36,7 +36,6 @@ const ProfilePage = () => {
   const changeHandle = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
-      console.log(files[0]);
       setData((prevData) => ({
         ...prevData,
         [name]: files[0],
@@ -59,7 +58,7 @@ const ProfilePage = () => {
 
   const Submitbutton = async (event) => {
     event.preventDefault();
-    console.log(data);
+
     try {
       const response = await axios.patch(
         "http://localhost:5000/api/users/profiles",

@@ -24,11 +24,9 @@ function SearchPage() {
       const data = location.split(" ");
       const Lat = Number(data[1].slice(0, -1));
       const Long = Number(data[3]);
-      console.log(data);
-      console.log("lat :", Lat, "long :", Long);
+
       const locationName = await reverseGeocode(Lat, Long);
       setlocation(locationName);
-      console.log(locationName);
     };
     checkLocation();
   }, []);

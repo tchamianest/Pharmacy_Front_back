@@ -51,7 +51,6 @@ const Login = () => {
             },
           }
         );
-        console.log(response);
         if (response.status == 201) {
           setIsSignUp(false);
         }
@@ -92,9 +91,6 @@ const Login = () => {
         navigate("/dashboard");
       }
     } catch (error) {
-      console.log(error.response?.data || error.message);
-      console.log(error.response.data.error);
-
       setError(` ${error.response.data.error}`);
     }
   };
