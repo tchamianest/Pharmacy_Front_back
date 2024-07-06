@@ -18,7 +18,6 @@ const DarkMode = () => {
   }, [theme]);
 
   const element = document.documentElement; //HTML ELEMENT
-  console.log(element);
   return (
     <div className="relative">
       <img
