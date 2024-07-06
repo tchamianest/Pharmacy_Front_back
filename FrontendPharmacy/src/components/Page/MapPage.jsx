@@ -19,6 +19,7 @@ function Routing({ start, end }) {
     if (!map) return;
 
     const routingControl = L.Routing.control({
+      // eslint-disable-next-line react/prop-types
       waypoints: [L.latLng(start.lat, start.lng), L.latLng(end.lat, end.lng)],
       routeWhileDragging: true,
     }).addTo(map);
@@ -102,7 +103,7 @@ function MapPage() {
 
     fetchData();
   }, []);
-  console.log(medical);
+
   return (
     <>
       <div className="flex justify-center dark:bg-gray-800 items-center flex-col  gap-8">

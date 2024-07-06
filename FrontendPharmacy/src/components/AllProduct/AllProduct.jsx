@@ -22,7 +22,7 @@ const AllProduct = () => {
 
     fetchData();
   }, []);
-  console.log("Medical", medical);
+
   return (
     <div className="container mt-10 min-h-[300px]">
       {/* Header Title  */}
