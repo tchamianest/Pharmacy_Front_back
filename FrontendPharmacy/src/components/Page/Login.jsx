@@ -91,6 +91,7 @@ const Login = () => {
         navigate("/dashboard");
       }
     } catch (error) {
+      console.log(error);
       setError(` ${error.response.data.error}`);
     }
   };
