@@ -3,6 +3,7 @@ import { userToken } from "../utils/token.generator.js";
 import User from "../models/user.js";
 import { passwordEncrypt, passwordCompare } from "../utils/encrypt.js";
 import uploadImage from "../utils/cloudinary.utils.js";
+import { where } from "sequelize";
 
 export const userSignup = async (req, res) => {
   try {
@@ -67,13 +68,26 @@ export const userLogin = async (req, res) => {
     res.status(500).json({ err: "internal server error" });
   }
 };
+export const updatePassword = async (req, res) => {
+  try {
+    const user = req.user;
+    const userdata = await User.findOne({ where: { id: user.id } });
+    const { oldPassword } = req.body;
+    res.status(200).json({ oldPassword: oldPassword, userdata });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ status: "error", error });
+  }
+};
 
 export const profile = (req, res) => {
   try {
     const user = req.user;
 
     res.status(200).json({ message: "User profile", user: req.user });
-  } catch (err) {}
+  } catch (err) {
+    res.status(500).json({ status: "error", error: err });
+  }
 };
 
 /// EDIT USER PROFILE
@@ -134,5 +148,15 @@ export const editUser = async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({ error: "there is an error user are not updated" });
+  }
+};
+
+// Getting ALL USER
+export const GetAllUsers = async (req, res) => {
+  try {
+    const user = await User.findAll({ attributes: { exclude: ["password"] } });
+    res.status(200).json({ status: "success", Users: user });
+  } catch (error) {
+    res.status(500).json({ error: "error", message: "Internal server Error" });
   }
 };
