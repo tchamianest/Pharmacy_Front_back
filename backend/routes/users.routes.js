@@ -6,6 +6,8 @@ import {
   profile,
   userLogin,
   editUser,
+  GetAllUsers,
+  updatePassword,
 } from "../controller/user.controller.js";
 import authenticat from "../middleware/userAuthenticate.js";
 
@@ -20,6 +22,8 @@ users.patch(
   multerupload.single("profileImage"),
   editUser
 );
+users.patch("/updatepassword", authenticat, updatePassword);
 users.get("/tokecheck", authenticat, tokenChecker);
+users.get("/", GetAllUsers);
 
 export default users;
