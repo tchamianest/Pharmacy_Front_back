@@ -72,8 +72,25 @@ export const updatePassword = async (req, res) => {
   try {
     const user = req.user;
     const userdata = await User.findOne({ where: { id: user.id } });
-    const { oldPassword } = req.body;
-    res.status(200).json({ oldPassword: oldPassword, userdata });
+    const { oldPassword, newPassword } = req.body;
+    const result = await passwordCompare(userdata.password, oldPassword);
+    if (!result) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "the Old password are incorrect " });
+    }
+    if (newPassword === oldPassword) {
+      return res.status(200).json({
+        status: "Fail",
+        message: "new Password must be different from old one",
+      });
+    }
+    const hashpassword = await passwordEncrypt(newPassword);
+    const newone = await userdata.update({ password: hashpassword });
+
+    res
+      .status(200)
+      .json({ status: "success", message: "password updated successful" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ status: "error", error });

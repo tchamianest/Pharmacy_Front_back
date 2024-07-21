@@ -1,15 +1,26 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import UpdateMedical from "./updatemedical";
+import { ToastContainer, toast } from "react-toastify";
 
 const Medicals = () => {
+  const [activeOne, setActiveOne] = useState("medicals");
+  const notify = (message) => toast(`${message}`);
   const navigate = useNavigate();
   const [medical, setMedical] = useState([]);
+  const [medicaldata, setmedicaldata] = useState();
   const users = JSON.parse(localStorage.getItem("user"));
   const Logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("HeaderToken");
+    localStorage.removeItem("user");
     navigate("/");
   };
+  const handleClick = (data, el) => {
+    setmedicaldata(el);
+    setActiveOne(data);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,9 +41,41 @@ const Medicals = () => {
 
     fetchData();
   }, []);
-
+  if (activeOne === "update") {
+    return (
+      <div>
+        <button
+          className="text-blue-500 border p-2 px-3 hover:bg-blue-500 hover:text-white mt-[-20px] mb-0 cursor-pointer"
+          onClick={() => handleClick("medical")}
+        >
+          back Button
+        </button>
+        <UpdateMedical medical={medicaldata} />
+      </div>
+    );
+  }
+  const handleDelete = async (id) => {
+    try {
+      const result = await axios.delete(
+        `http://localhost:5000/api/product/delete/${id}`,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: localStorage.getItem("HeaderToken"),
+          },
+        }
+      );
+      if (result) {
+        notify("Product deleted success full ✅");
+      }
+    } catch (error) {
+      notify(error.message);
+      console.log();
+    }
+  };
   return (
     <div className="">
+      <ToastContainer />
       <div className="flex justify-between pr-20 p-3">
         <h1 className="font-medium text-2xl">Medical List</h1>
         <div className="flex  items-center gap-3 border-[1px] p-2 px-5">
@@ -71,10 +114,16 @@ const Medicals = () => {
                     {el.isAvailable ? "Available" : "Un Available"}
                   </p>
                   <div className="flex gap-5 justify-end">
-                    <button className="bg-blue-600 px-10 p-1 rounded-sm text-white hover:bg-blue-700">
+                    <button
+                      className="bg-blue-600 px-10 p-1 rounded-sm text-white hover:bg-blue-700"
+                      onClick={() => handleClick("update", el)}
+                    >
                       Update{" "}
                     </button>
-                    <button className="bg-red-600 px-10 p-1 rounded-sm text-white hover:bg-red-700">
+                    <button
+                      onClick={() => handleDelete(el.id)}
+                      className="bg-red-600 px-10 p-1 rounded-sm text-white hover:bg-red-700"
+                    >
                       Delete
                     </button>
                   </div>

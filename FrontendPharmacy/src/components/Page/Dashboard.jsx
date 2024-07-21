@@ -5,8 +5,10 @@ import Inbox from "../Dashboardpage/Inbox";
 import Medicals from "../Dashboardpage/Medicals";
 import PostMedical from "../Dashboardpage/PostMedical";
 import Setting from "../Dashboardpage/Setting";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+  const navigation = useNavigate();
   const [open, setOpen] = useState(true);
   const [display, setDisplay] = useState(<HomeDash />);
   const Menus = [
@@ -64,13 +66,16 @@ function Dashboard() {
          border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
-        <div className="flex gap-x-4 items-center">
+        <div
+          className="flex gap-x-4 items-center cursor-pointer"
+          onClick={() => navigation("/")}
+        >
           <img
             src="./src/assets/logo.png"
             className={`cursor-pointer duration-500 ${
               open && "rotate-[360deg]" && "max-w-[30px]"
             }`}
-            onClick={() => setDisplay(<HomeDash />)}
+            onClick={() => navigation("/")}
           />
           <h1
             className={`text-white text-2xl origin-left font-medium  duration-200 ${
