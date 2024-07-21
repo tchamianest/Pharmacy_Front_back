@@ -46,7 +46,78 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ status: "Error", Error: error.message });
   }
 };
+export const UpdateProduct = async (req, res) => {
+  try {
+    const Productdata = await Product.findOne({
+      where: { id: req.body.id, sellerId: req.user.dataValues.id },
+    });
+    if (req.user.dataValues.id !== Productdata.dataValues.sellerId) {
+      return res.status(200).json({
+        error: "Error",
+        message: "this product is not exist in your stock",
+      });
+    }
+    const { productName, productPrice, productDescription } = req.body;
+    if (!productName && !productPrice && !productDescription) {
+      return res.status(400).send({
+        error: "atleat update one field are required into the product create ",
+      });
+    }
 
+    let uploadedImage;
+
+    if (req.file) {
+      uploadedImage = await uploadImage(req.file.buffer);
+    }
+    const updatedproduct = {
+      sellerId: req.user.dataValues.id,
+      SellerName: req.user.dataValues.firstName,
+      email: req.user.dataValues.email,
+      Phone: req.user.dataValues.phone,
+      location: req.user.dataValues.whereYouLive,
+      locationName: req.user.dataValues.location,
+      productName: productName || Productdata.dataValues.productName,
+      productPrice: productPrice || Productdata.dataValues.productPrice,
+      isAvailable: true,
+      productDescription:
+        productDescription || Productdata.dataValues.productDescription,
+      productPictures: uploadedImage || Productdata.dataValues.productPictures,
+    };
+    await Productdata.update(updatedproduct);
+    res.status(201).json({
+      message: "Product are updated successfully",
+      product: Productdata,
+    });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ error: "there is an error Product are not updated" });
+  }
+};
+export const DeleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const Productdata = await Product.findOne({
+      where: { id, sellerId: req.user.dataValues.id },
+    });
+    if (req.user.dataValues.id !== Productdata.dataValues.sellerId) {
+      return res.status(200).json({
+        error: "Error",
+        message: "this product is not exist in your stock",
+      });
+    }
+
+    await Productdata.destroy();
+    res.status(201).json({
+      message: "Product are Deleted successfully",
+    });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ error: "there is an error Product are not updated", error });
+  }
+};
 export const SellerProduct = async (req, res) => {
   try {
     const user = req.user.dataValues.id;
