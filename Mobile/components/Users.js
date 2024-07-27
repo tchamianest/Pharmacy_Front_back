@@ -22,7 +22,9 @@ export default function Users() {
 
   return (
     <View className="mt-4">
-      <Text className="pl-3 mb-3 font-semibold text-lg">Sellers</Text>
+      <Text className="pl-3 mb-3  font-bold text-[18px] text-blue-400">
+        Sellers
+      </Text>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -31,7 +33,7 @@ export default function Users() {
       >
         {user?.map((el, index) => {
           let isActive = el.id === activeCategolies;
-          let btnclass = isActive ? "bg-gray-600" : "bg-gray-200";
+          let btnclass = isActive ? "bg-gray-600" : "bg-blue-400";
           let textclass = isActive
             ? "font-semibold text-gray-800"
             : "text-gray-500";
@@ -39,11 +41,12 @@ export default function Users() {
             <View key={index} className="flex justify-center items-center mr-6">
               <TouchableOpacity
                 onPress={() => navigate.navigate("Profile", { ...el })}
-                className={`p-1 rounded-full shadow bg-gray-200  ${btnclass}`}
+                className={`p-1 rounded-full shadow bg-blue-400  ${btnclass}`}
               >
                 <Image
                   style={{ width: 45, height: 45 }}
                   source={{ uri: el.profileImage }}
+                  className="rounded-full bg-blue-400"
                 />
               </TouchableOpacity>
               <Text className={`text-sm  ${textclass}`}>{el.lastName}</Text>

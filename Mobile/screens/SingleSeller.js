@@ -24,13 +24,16 @@ export default function Profile() {
     );
   };
   const el = params;
-  console.log(el);
+
   return (
     <View className="flex-1 ">
       <StatusBar style="light" />
       <ScrollView>
         <View className="relative">
-          <Image source={{ uri: el.profileImage }} className="h-80 w-full" />
+          <Image
+            source={{ uri: el.profileImage }}
+            className="h-[400px] w-full object-cover"
+          />
           <TouchableOpacity
             className="absolute top-9 left-3 bg-gray-50 rounded-full shadow"
             onPress={() => navigate.goBack()}
@@ -69,7 +72,7 @@ export default function Profile() {
           <View className="flex-row justify-between bg-gray-100 shadow-md rounded-full px-2 mx-2 py-3 items-center space-x-3 mr-3">
             <TouchableOpacity
               onPress={() => makePhoneCall(el.phone)}
-              className=" bg-blue-600  p-4 rounded-full"
+              className=" bg-blue-400  p-4 rounded-full"
             >
               <Icon.Phone fill="white" stroke="white" strokeWidth={1} />
             </TouchableOpacity>

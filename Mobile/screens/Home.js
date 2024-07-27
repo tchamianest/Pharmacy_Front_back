@@ -5,11 +5,12 @@ import React from "react";
 import Searchsections from "../components/Searchsections";
 import { themecolors } from "../themes";
 import Users from "../components/Users";
+import ProductList from "../components/ProductList";
 
 export default function HomePage() {
   return (
     <View className="h-full bg-red">
-      <SafeAreaView className="bg-white ">
+      <SafeAreaView className=" ">
         <StatusBar
           barStyle="light-content"
           backgroundColor={themecolors.bgColor(1)}
@@ -28,15 +29,26 @@ export default function HomePage() {
           </View>
         </View>
         {/* Search icons  */}
-        <View className="pt-5">
-          <Searchsections />
+        <View className=" pb-3">
+          <View className="pt-5 ">
+            <Searchsections />
+          </View>
         </View>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 20 }}
-        >
-          <Users />
-        </ScrollView>
+        <View className="pt-3 mt-4 ">
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 20 }}
+          >
+            <View className="bg-white mb-2">
+              <Users />
+            </View>
+            <View className="bg-white mt-1 h-full pb-24 flex-1">
+              <View className="mt-4">
+                <ProductList />
+              </View>
+            </View>
+          </ScrollView>
+        </View>
       </SafeAreaView>
     </View>
   );
