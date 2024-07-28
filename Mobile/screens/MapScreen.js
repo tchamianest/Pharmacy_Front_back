@@ -137,7 +137,9 @@ export default function MapScreen() {
               <Text className="text-lg font-bold text-white">
                 {seller?.lastName}
               </Text>
-              <Text className="text-lg font-bold text-white">Call Seller</Text>
+              <Text className="text-lg font-bold text-white">
+                Call {seller?.lastName}
+              </Text>
             </View>
             <View className="flex-row items-center space-x-3 mr-3">
               <TouchableOpacity
