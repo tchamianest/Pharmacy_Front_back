@@ -1,5 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import MapSections from "./MapSections";
+import "leaflet/dist/leaflet.css";
+import "leaflet-routing-machine";
 import Navbar from "./navbar/Navbar";
 import Hero from "./Home/Hero";
 import Footer from "./Footer/Footer";
@@ -13,6 +16,7 @@ function HomePage() {
       <Hero />
       <LatestPro />
       <AllProduct />
+      <MapSections />
       <Footer />
     </div>
   );

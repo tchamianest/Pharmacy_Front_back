@@ -138,7 +138,7 @@ const Navbar = () => {
                   <img
                     src={user.profileImage}
                     alt="Image"
-                    className="w-[40px] rounded-full"
+                    className="w-[40px] rounded-full h-[40px] object-cover"
                   />
                   <a href="/dashboard" className="hover:text-blue-600">
                     {user.name2}
