@@ -52,7 +52,7 @@ export default function MapScreen() {
     const latitude = parseFloat(data[0].split(":")[1]?.trim());
     const longitude = parseFloat(data[1].split(":")[1]?.trim());
     console.log({ lat, long });
-    console.log(seller);
+    console.log(seller.profileImage);
     return (
       <View className="flex-1 ">
         {/* map view  */}
@@ -126,14 +126,20 @@ export default function MapScreen() {
             >
               <Image
                 className="h-16 w-16 rounded-full"
-                source={require("../assets/favicon.png")}
+                source={
+                  seller?.profileImage
+                    ? { uri: seller.profileImage }
+                    : require("../assets/icon.png")
+                }
               />
             </View>
             <View className="text-lg font-bold text-white">
               <Text className="text-lg font-bold text-white">
                 {seller?.lastName}
               </Text>
-              <Text className="text-lg font-bold text-white">Call Seller</Text>
+              <Text className="text-lg font-bold text-white">
+                Call {seller?.lastName}
+              </Text>
             </View>
             <View className="flex-row items-center space-x-3 mr-3">
               <TouchableOpacity

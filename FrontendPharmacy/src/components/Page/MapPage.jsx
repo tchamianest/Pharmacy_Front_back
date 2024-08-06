@@ -43,6 +43,7 @@ function MapPage() {
     };
     location();
   }, []);
+  
   const [medical, setMedical] = useState([]);
   const [destin, setDestination] = useState(null);
 

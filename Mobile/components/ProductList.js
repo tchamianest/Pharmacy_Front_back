@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from "react-native";
 import axios from "axios";
+import { themecolors } from "../themes";
 import { useRoute, useNavigation } from "@react-navigation/native";
 
 export default function ProductList() {
@@ -54,7 +55,10 @@ export default function ProductList() {
                   className="min-w-full"
                 />
               </View>
-              <View className="px-2 flex-1 justify-center border-t-2 border-white  bg-blue-400 rounded-e-sm">
+              <View
+                className="px-2 flex-1 justify-center border-t-2 border-white   rounded-e-sm"
+                style={{ backgroundColor: themecolors.bgColor(0.8) }}
+              >
                 <Text className="text-white font-semibold capitalize">
                   {el.productName}
                 </Text>
