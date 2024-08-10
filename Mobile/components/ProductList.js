@@ -19,7 +19,7 @@ export default function ProductList() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get("http:192.168.1.70:5000/api/product");
+        const response = await axios.get("http: 192.168.1.69:5000/api/product");
 
         if (response.data) {
           setProduct(response.data.data);
