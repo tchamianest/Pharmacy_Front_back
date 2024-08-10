@@ -64,7 +64,7 @@ function MapSections() {
       <div className="font-bold text-primary mb-10 text-2xl">
         All Pharmacy Available
       </div>
-      <div className=" flex items-center z-30 justify-center content-center w-[75%] mb-10 bg-gray-400 border h-full min-h-[200px]">
+      <div className=" flex items-center z-30 justify-center content-center w-full mb-10 bg-gray-400 border h-full min-h-[200px]">
         <MapContainer
           center={originPosition}
           zoom={13}

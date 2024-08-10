@@ -1,23 +1,38 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "12345",
-    "database": "Pharmacy",
-    "host": "localhost",
-    "dialect": "postgres"
+    "username": "neondb_owner",
+    "password": "hYWRMOcp9LC2",
+    "database": "neondb",
+    "host": "ep-shy-leaf-a5a9m0vf.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true
+      }
+    }
   },
   "test": {
-    "username": "postgres",
-    "password": "12345",
-    "database": "Pharmacy",
-    "host": "localhost",
-    "dialect": "postgres"
+    "username": "neondb_owner",
+    "password": "hYWRMOcp9LC2",
+    "database": "neondb",
+    "host": "ep-shy-leaf-a5a9m0vf.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true
+      }
+    }
   },
   "production": {
-    "username": "postgres",
-    "password": "12345",
-    "database": "Pharmacy",
-    "host": "localhost",
-    "dialect": "postgres"
+    "username": "neondb_owner",
+    "password": "hYWRMOcp9LC2",
+    "database": "neondb",
+    "host": "ep-shy-leaf-a5a9m0vf.us-east-2.aws.neon.tech",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true
+      }
+    }
   }
 }

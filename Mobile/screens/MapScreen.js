@@ -32,7 +32,7 @@ export default function MapScreen() {
     datawait();
     const getUsers = async () => {
       try {
-        const response = await axios.get("http:192.168.1.70:5000/api/users");
+        const response = await axios.get("http: 192.168.1.69:5000/api/users");
 
         if (response.data) {
           const data = response.data.Users;
