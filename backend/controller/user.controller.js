@@ -137,19 +137,19 @@ export const editUser = async (req, res) => {
       },
       attributes: { exclude: ["password"] },
     });
-    let uploadedImage;
+
     if (!req.file) {
       return res.status(400).json({ Error: "profile image is required" });
     }
-
-    if (req.file) {
+    let uploadedImage = user?.profileImage;
+    if (req.file && firstName) {
       uploadedImage = await uploadImage(req.file.buffer);
     }
 
     const updatedUser = {
       firstName: firstName || user?.firstName,
       lastName: lastName || user?.lastName,
-      profileImage: uploadedImage || user?.profileImage,
+      profileImage: uploadedImage,
       phone: phone || user?.phone,
       location: location || user.location,
       preferredLanguage: preferredLanguage || user?.preferredLanguage,
