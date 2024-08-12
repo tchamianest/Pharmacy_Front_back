@@ -7,6 +7,7 @@ import { reverseGeocode } from "../../utils/ApiReverse";
 import { getlocation } from "../../utils/locationFunction";
 import axios from "axios";
 import help from "../../assets/help.jpg";
+import MapSectionsSearch from "./SearchByMap";
 
 function SearchPage() {
   const useQuery = () => {
@@ -56,7 +57,7 @@ function SearchPage() {
             className="w-[20%] mt-[90px] h-[100vh] bg-cover bg-center  bg-no-repeat   bg-gray-300 rounded-sm"
           ></div>
           {/* the search section  */}
-          <div className="w-[80%] mt-[90px]  flex flex-col gap-4">
+          <div className="w-[80%] mt-[90px]  flex flex-col gap-4 max-h-[95vh] overflow-auto">
             <div className="flex gap-5 bg-gray-100 w-[80%] h-[50px] shadow-lg rounded-sm items-center p-3">
               <p className="font-bold text-2xl">Search :</p>
               <h1 className="text-xl text-black/70 italic">{name}</h1>
@@ -88,6 +89,7 @@ If you're still having trouble finding what you need, feel free to contact our s
           </div>
         </div>
       </div>
+      <MapSectionsSearch data={data} />
 
       <Footer />
     </div>

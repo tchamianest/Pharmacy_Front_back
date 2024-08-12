@@ -26,7 +26,7 @@ DB_HOST_MODE === "local"
   ? (dialect_option = {})
   : (dialect_option = {
       ssl: {
-        require: process.env.SSL,
+        require: true,
         rejectUnauthorized: true
       }
     });
