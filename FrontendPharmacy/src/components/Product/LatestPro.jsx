@@ -35,7 +35,21 @@ const dummyData = [
   },
   // Add more dummy data as needed
 ];
-const LatestPro = () => {
+const LatestPro = (data) => {
+  console.log(data.data, "latest section medicals");
+  function getLatestSevenItems(items) {
+    // Sort the array by the createdAt field in descending order
+    const sortedItems = items.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
+    // Return the first 7 items from the sorted array
+    return sortedItems.slice(0, 7);
+  }
+
+  const latestSevenItems = getLatestSevenItems(data.data);
+
+  console.log(latestSevenItems, "latest section medicals----------------");
   const settings = {
     dots: true,
     arrows: true,
@@ -76,27 +90,42 @@ const LatestPro = () => {
         </div>
         {/* Left section of latest */}
         <div className="flex  mt-3 gap-5 ">
-          <div className=" w-64 flex-none hidden sm:block py-7 items-center">
-            <p className="font-bold text-1xl sm:text-2xl ">Welcome 😄</p>
-            <p className="italic text-1xl pt-3">
-              Investing in your health today is like planting seeds for a
-              bountiful harvest tomorrow. It's putting resources into your
-              well-being bank, ensuring a prosperous future. By prioritizing
-              your health now, you're crafting a blueprint for longevity and
-              vitality.
-            </p>
+          <div className=" lg:block hidden min-w-[280px] max-w-[300px]  relative group overflow-hidden rounded-lg shadow-lg">
+            <div className="w-full h-full transition-transform duration-300 ease-in-out transform group-hover:scale-110">
+              <video
+                src="./medicalvideo.mp4" // Replace with your online video URL
+                className="w-full h-full object-fill object-center"
+                muted
+                loop
+                autoPlay
+                playsInline
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+              />
+            </div>
+            <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p className="text-2xl text-center p-4 capitalize  font-extrabold text-primary">
+                Prioritize your life by focusing on your well-being and personal
+                growth. Make choices that align with your values and needs,
+                ensuring a fulfilling and balanced life.
+              </p>
+            </div>
           </div>
-          <div className="flex-1 bg-gray-800 object-cover w-full sm:max-w-[80%] rounded-lg  text-black p-1 sm:items-center">
+
+          <div className="flex-1 bg-gray-800 object-cover w-full lg:max-w-[80%] max-w-full rounded-lg  text-black p-1 sm:items-center">
             <Slider {...settings} className="relative p-0 m-0  ">
-              {dummyData.map((el, i) => (
+              {latestSevenItems.map((el, i) => (
                 <>
                   <div key={i} className="flex m-0">
                     <Product
-                      productImage={el.productImage}
+                      productImage={el.productPictures}
                       productName={el.productName}
                       SellerName={el.SellerName}
-                      location={el.location}
-                      price={el.price}
+                      location={el.locationName}
+                      price={el.productPrice}
+                      id={el.id}
                     />
                   </div>
                 </>
