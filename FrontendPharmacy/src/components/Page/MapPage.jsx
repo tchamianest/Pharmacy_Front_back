@@ -19,7 +19,6 @@ function Routing({ start, end }) {
     if (!map) return;
 
     const routingControl = L.Routing.control({
-      // eslint-disable-next-line react/prop-types
       waypoints: [L.latLng(start.lat, start.lng), L.latLng(end.lat, end.lng)],
       routeWhileDragging: true,
     }).addTo(map);
@@ -30,6 +29,18 @@ function Routing({ start, end }) {
   return null;
 }
 
+import PropTypes from "prop-types";
+
+Routing.propTypes = {
+  start: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
+  end: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
+};
 function MapPage() {
   const [origin, setOrigin] = useState([]);
   useEffect(() => {
@@ -43,7 +54,7 @@ function MapPage() {
     };
     location();
   }, []);
-  
+
   const [medical, setMedical] = useState([]);
   const [destin, setDestination] = useState(null);
 
@@ -65,7 +76,6 @@ function MapPage() {
     const lat = origin.lat.slice(0, -1);
     originPosition = [Number(lat), Number(origin.long)];
     destinationPosition = destin;
-
   }
 
   const createLabelIcon = (label) => {

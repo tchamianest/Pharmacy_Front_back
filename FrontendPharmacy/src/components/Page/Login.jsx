@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -64,18 +64,16 @@ const Login = () => {
           );
         }
         setError("");
-        const response = await axios.post(
-          "http://localhost:5000/api/users/login",
-          {
-            email: formdata.email,
-            password: formdata.password,
+        const response = await ("http://localhost:5000/api/users/login",
+        {
+          email: formdata.email,
+          password: formdata.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        });
 
         const user = {
           name1: response.data.user.firstName,
