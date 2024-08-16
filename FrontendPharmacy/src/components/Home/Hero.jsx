@@ -59,7 +59,7 @@ const Hero = () => {
                       </h1>
                       <p className="text-sm">{items.description}</p>
                       <div>
-                        <button className=" text-white bg-primary px-5 py-2 sm:mt-10 mt-4 hover:bg-primary/70 rounded-sm">
+                        <button className=" text-white hover:bg-primary px-5 py-2 sm:mt-10 mt-4 bg-blue-500 rounded-xl">
                           Contact doctor
                         </button>
                       </div>

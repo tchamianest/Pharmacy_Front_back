@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import DarkMode from "./DarkMode";
 import Logo from "../../assets/logo.png";
 import { IoMdSearch } from "react-icons/io";
-import { FaCaretDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 //MENU ARRAY
@@ -14,11 +13,6 @@ const Menu = [
   { id: 4, name: "Menu", link: "/#" },
 ];
 
-const Dropdownlink = [
-  { id: 1, name: "E-testing", link: "/#" },
-  { id: 1, name: "help", link: "/#" },
-  { id: 1, name: "Voice Call", link: "/#" },
-];
 const Navbar = () => {
   const [Search, setSearch] = useState("");
   const [user, setUser] = useState(null);
@@ -41,14 +35,14 @@ const Navbar = () => {
   }, []);
   const [showMenu, setMenu] = useState(false);
   return (
-    <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 z-40 top-0 sticky w-screen">
+    <div className="shadow-md bg-white dark:bg-gray-900  dark:text-white duration-200 z-40 top-0 sticky w-screen">
       {/* Upper Navabar */}
-      <div className="bg-primary/20 py-2 flex">
+      <div className="bg-primary/20 py-1 flex">
         <div className="container justify-between flex items-center">
-          <div className="">
+          <div className="flex items-center justify-center">
             <a
               href="/"
-              className="font-bold sm:text-1xl text-[12px] sm:text-2xl flex gap-2 text-blue-400 dark:text-white"
+              className="font-bold sm:text-lg py-2 text-[12px]  flex gap-2 justify-center items-center text-blue-400 dark:text-white"
             >
               <img src={Logo} alt="Logo" className="sm:w-10 w-7" />
               Rwanda Pharmacy
@@ -62,7 +56,7 @@ const Navbar = () => {
                 placeholder="search Medical..."
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-[200px] dark:border-gray-500 dark:bg-gray-800 sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-sm h-9 border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary"
+                className="w-[200px] dark:border-gray-500 dark:bg-gray-800 sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-xl h-9 border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary"
               />
               <IoMdSearch
                 onClick={handleClick}
@@ -89,14 +83,14 @@ const Navbar = () => {
         </div>
       </div>
       {/* Lower Navbar */}
-      <div className=" justify-center flex ">
-        <ul className="sm:flex hidden items-center gap-4 py-1">
+      <div className=" justify-center flex mt-0 ">
+        <ul className="sm:flex hidden  items-center gap-4 py-1">
           {Menu.map((data) => (
             <>
               <li key={data.id}>
                 <a
                   href={data.link}
-                  className=" iniline-block px-4 hover:text-primary duration-200"
+                  className=" iniline-block px-4 hover:text-primary text-sm duration-200"
                 >
                   {data.name}
                 </a>
@@ -105,8 +99,8 @@ const Navbar = () => {
           ))}
 
           {/* Simple Dropdown */}
-          <li className="group relative cursor-pointer">
-            <a href="#" className="flex items-center gap-[2px] py-2">
+          {/* <li className="group relative cursor-pointer">
+            <a href="#" className="flex items-center gap-[2px] ">
               Trending Product
               <span>
                 <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
@@ -126,7 +120,7 @@ const Navbar = () => {
                 </>
               ))}
             </div>
-          </li>
+          </li> */}
           <li className="px-5">
             {!user ? (
               <button className=" text-white bg-primary px-4 py-1  hover:bg-primary/70 rounded-sm">
@@ -134,7 +128,7 @@ const Navbar = () => {
               </button>
             ) : (
               <a href="/dashboard">
-                <div className="flex justify-center items-center cursor-pointer gap-3 py-1 my-3  px-3">
+                <div className="flex justify-center items-center cursor-pointer gap-3 py-2   px-3">
                   <img
                     src={user.profileImage}
                     alt="Image"
