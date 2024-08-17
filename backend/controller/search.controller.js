@@ -1,6 +1,7 @@
 import { buildWhereClause } from "../utils/Search.util.js";
 import Product from "../models/product.js";
 import { Sequelize } from "sequelize";
+import User from "../models/user.js";
 
 export const searchProducts = async (req, res) => {
   const query = req.query;
