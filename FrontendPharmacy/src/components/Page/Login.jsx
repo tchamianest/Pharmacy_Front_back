@@ -64,16 +64,18 @@ const Login = () => {
           );
         }
         setError("");
-        const response = await ("http://localhost:5000/api/users/login",
-        {
-          email: formdata.email,
-          password: formdata.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
+        const response = await axios.post(
+          "http://localhost:5000/api/users/login",
+          {
+            email: formdata.email,
+            password: formdata.password,
           },
-        });
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         const user = {
           name1: response.data.user.firstName,

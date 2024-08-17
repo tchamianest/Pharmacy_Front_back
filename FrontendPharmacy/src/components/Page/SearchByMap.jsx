@@ -3,10 +3,9 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import PropTypes from "prop-types";
-
+import axios from "axios";
 function MapSectionsSearch({ data }) {
   let originPosition = [-1.969596, 30.061921];
-  console.log(data);
   const [location, setLocation] = useState([]);
 
   const createLabelIcon = (label) => {
@@ -23,6 +22,25 @@ function MapSectionsSearch({ data }) {
     });
   };
 
+  const [dataUser, setDataUser] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get(`http://localhost:5000/api/users`, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: localStorage.getItem("HeaderToken"),
+          },
+        });
+
+        setDataUser(result?.data?.Users);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
   useEffect(() => {
     function parseLatLong(str) {
       const parts = str.split(",");
@@ -34,18 +52,23 @@ function MapSectionsSearch({ data }) {
     }
 
     const newLocations = data.map((el) => {
+      const user = dataUser;
+      const seller = user.filter((user1) => user1.id == el.sellerId);
       const locationData = parseLatLong(el.location);
       return {
         name: el.locationName,
         locationData,
         Phone: el.phone,
         medicalID: el.id,
+        MedicalName: el.productName,
+        img: el.productPictures,
+        user: seller[0],
       };
     });
 
     setLocation(newLocations);
-  }, [data]);
-  console.log(data, "data comming ");
+  }, [data, dataUser]);
+  console.log(location, "data------**//");
   return (
     <div className="w-full items-center flex-col justify-center flex bg-gray-600 pt-10">
       <div className="font-bold text-primary mb-10 text-2xl">
@@ -69,13 +92,39 @@ function MapSectionsSearch({ data }) {
               draggable={false}
             >
               <Popup>
-                <div className="flex flex-col gap2">
-                  {loc.Phone} {loc.name}
+                <div className="flex flex-col ">
+                  <div className="flex max-h-14  shadow-sm items-center justify-between px-3 mt-2">
+                    <img
+                      src={loc.user.profileImage}
+                      alt="Medical Image"
+                      className="h-8 w-8 bg-gray-400 rounded-full"
+                    />
+                    <div className="">
+                      <p className="mt-0 mb-0 pt-0 pb-0 capitalize ">
+                        {" "}
+                        Seller: {loc.user.firstName},
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex max-h-24 bg-gray-100 rounded-lg border shadow-sm items-center justify-between px-3 mt-2">
+                    <img
+                      src={loc.img}
+                      alt="Medical Image"
+                      className="h-8 w-8 bg-gray-400 mr-3"
+                    />
+                    <div className="">
+                      <p className="mt-0 mb-0 pt-0 pb-0 capitalize ">
+                        {" "}
+                        {loc.MedicalName}
+                        <br /> {loc.Phone} {loc.name}
+                      </p>
+                    </div>
+                  </div>
                   <a
                     className=" flex justify-center items-center"
                     href={`http://localhost:5173/product?id=${loc.medicalID}`}
                   >
-                    <button className="px-3 py-1 bg-blue-500 cursor-pointer rounded-2xl text-white mt-3 font-bold hover:bg-blue-700">
+                    <button className="px-3 py-1 bg-blue-500 cursor-pointer rounded-lg text-white mt-3 font-bold hover:bg-primary">
                       View Location
                     </button>
                   </a>

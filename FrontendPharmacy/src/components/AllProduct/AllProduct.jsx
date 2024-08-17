@@ -36,7 +36,7 @@ const AllProduct = () => {
           <div className="relative h-1 dark:bg-white bg-blue-400 mt-2 max-w-[10%]"></div>
         </div>
         {/* Body container for all Product */}
-        <div className="inline-grid grid-cols-1 sm:grid-cols-4 gap-4 sm:m-7">
+        <div className="inline-grid grid-cols-1 md:grid-cols-4   gap-4 sm:m-7">
           {medical.map((el, i) => (
             <>
               <div key={el.id} id={el.id} className="flex m-0">
