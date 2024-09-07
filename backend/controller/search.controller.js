@@ -30,6 +30,11 @@ export const searchProducts = async (req, res) => {
     const products = await Product.findAll({
       where: whereClause,
       order: order,
+      include: {
+        model: User,
+        as: "seller",
+        attributes: ["id", "firstName", "lastName", "email"],
+      },
     });
     res.json(products);
   } catch (error) {

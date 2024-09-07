@@ -7,7 +7,8 @@
     "migration": "npx sequelize db:migrate",
     "demigrate": "npx sequelize db:migrate:undo:all",
     "start": "node ./index.js",
-    "dev": " npm run migration &&   nodemon  ./index.js "
+    "dev": " npm run migration &&   nodemon  ./index.js ",
+    "studio": " drizzle-kit studio --port 3030 --verbose"
   },
   "type": "module",
   "author": "Tchami",
