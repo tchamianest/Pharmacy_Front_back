@@ -10,7 +10,7 @@ function MapSectionsSearch({ data }) {
 
   const createLabelIcon = (label) => {
     const html = `
-          <div class="text-[10px] text-red-500 font-extralight  text-center" >
+          <div class="text-[13px] whitespace-nowrap text-blue-900 font-bold  text-center " >
           ${label} Pharmacy
            <img src='/location.png' class="w-10 h-10"/>
           </div>
@@ -51,10 +51,10 @@ function MapSectionsSearch({ data }) {
       return { latitude, longitude };
     }
 
-    const newLocations = data.map((el) => {
+    const newLocations = data?.map((el) => {
       const user = dataUser;
-      const seller = user.filter((user1) => user1.id == el.sellerId);
-      const locationData = parseLatLong(el.location);
+      const seller = user?.filter((user1) => user1.id == el?.sellerId);
+      const locationData = parseLatLong(el?.location);
       return {
         name: el.locationName,
         locationData,
@@ -68,7 +68,6 @@ function MapSectionsSearch({ data }) {
 
     setLocation(newLocations);
   }, [data, dataUser]);
-  console.log(location, "data------**//");
   return (
     <div className="w-full items-center flex-col justify-center flex bg-gray-600 pt-10">
       <div className="font-bold text-primary mb-10 text-2xl">
@@ -77,7 +76,8 @@ function MapSectionsSearch({ data }) {
       <div className=" flex items-center z-30 justify-center content-center w-full mb-10 bg-gray-400 border h-full min-h-[200px]">
         <MapContainer
           center={originPosition}
-          zoom={13}
+          zoom={9}
+          scrollWheelZoom={false}
           style={{ height: "70vh", width: "100%" }}
         >
           <TileLayer
@@ -88,7 +88,7 @@ function MapSectionsSearch({ data }) {
             <Marker
               key={index}
               position={[loc.locationData.latitude, loc.locationData.longitude]}
-              icon={createLabelIcon(loc.name)}
+              icon={createLabelIcon(loc.user.firstName)}
               draggable={false}
             >
               <Popup>

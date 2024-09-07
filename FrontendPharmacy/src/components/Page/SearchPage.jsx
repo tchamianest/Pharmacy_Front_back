@@ -36,7 +36,7 @@ function SearchPage() {
       const result = await axios.get(
         `http://localhost:5000/api/search?name=${name}&locationName= ${location}`
       );
-      setData(result.data);
+      setData(result.data || []);
     };
     Fetch();
   }, [name, location]);

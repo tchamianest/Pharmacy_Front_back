@@ -80,7 +80,7 @@ function MapPage() {
 
   const createLabelIcon = (label) => {
     const html = `
-      <div class="text-2xl text-blue-500 font-bold mb-10 text-center" >
+      <div class="text-sm text-blue-500 font-thin whitespace-nowrap mb-10 text-center" >
         ${label}
       </div>
     `;
@@ -114,7 +114,7 @@ function MapPage() {
 
     fetchData();
   }, []);
-
+  // console.log(medical.seller.firstName, "--============");
   return (
     <>
       <div className="flex justify-center dark:bg-gray-800 items-center flex-col  gap-8">
@@ -149,9 +149,18 @@ function MapPage() {
                   </p>
                 </div>
               </div>
-              <button className="w-[90%] duration-200 bg-primary/90 p-2 text-white font-bold rounded-sm hover:bg-primary/70">
-                Whatsap Text
-              </button>
+              <a
+                className="dark:text-white text-1xl "
+                href={
+                  medical?.seller?.email
+                    ? `mailto:${medical.seller.email}`
+                    : "#"
+                }
+              >
+                <button className="w-[90%] duration-200 bg-primary/90 p-2 text-white font-bold rounded-sm hover:bg-primary/70">
+                  Send Email Text
+                </button>
+              </a>
             </div>
           </div>
           <div className="w-[100%] mt-10">
@@ -159,17 +168,30 @@ function MapPage() {
               <h1 className="font-semibold text-primary text-1xl">
                 Seller Name :
               </h1>
-              <p className="dark:text-white text-1xl">{medical.SellerName}</p>
+              <p className="dark:text-white text-1xl">
+                {medical?.seller?.firstName ? medical.seller.firstName : ""}
+              </p>
             </div>
             <div className="flex gap-6 items-center">
               <h1 className="font-semibold text-primary text-1xl">
                 Phone Number :
               </h1>
-              <p className="dark:text-white text-1xl">{medical.Phone}</p>
+              <p className="dark:text-white text-1xl">
+                {medical?.seller?.phone ? medical.seller.phone : ""}
+              </p>
             </div>
             <div className="flex gap-6 items-center">
               <h1 className="font-semibold text-primary text-1xl">Email :</h1>
-              <p className="dark:text-white text-1xl">{medical.email}</p>
+              <a
+                className="dark:text-white text-1xl "
+                href={
+                  medical?.seller?.email
+                    ? `mailto:${medical.seller.email}`
+                    : "#"
+                }
+              >
+                {medical?.seller?.email ? medical.seller.email : ""}
+              </a>
             </div>
           </div>
         </div>
@@ -182,7 +204,8 @@ function MapPage() {
         <div className="flex items-center z-30 justify-center content-center w-[75%] mb-10 bg-gray-400 border h-full min-h-[200px]">
           <MapContainer
             center={originPosition}
-            zoom={13}
+            zoom={9}
+            scrollWheelZoom={false}
             style={{ height: "70vh", width: "100%" }}
           >
             <TileLayer
@@ -194,18 +217,41 @@ function MapPage() {
               icon={createLabelIcon("Me")}
               draggable={false}
             >
-              <Popup>
-                Origin: ({originPosition[0]}, {originPosition[1]})
-              </Popup>
+              <Popup>Me</Popup>
             </Marker>
             <Marker
               position={destinationPosition}
-              icon={createLabelIcon("Pharmacy")}
+              icon={createLabelIcon(
+                `  ${
+                  medical?.seller?.firstName ? medical.seller.firstName : ""
+                } Pharmacy`
+              )}
               draggable={false}
             >
               <Popup>
-                Destination: ({destinationPosition[0]}, {destinationPosition[1]}
-                )
+                <div className="flex flex-col ">
+                  <div className="flex max-h-14  shadow-sm items-center justify-between px-3 mt-2">
+                    <img
+                      src={
+                        medical?.seller?.profileImage
+                          ? medical.seller.profileImage
+                          : ""
+                      }
+                      alt="Medical Image"
+                      className="h-8 w-8 bg-gray-400 rounded-full"
+                    />
+                    <div className="">
+                      <p className="mt-0 mb-0 pt-0 pb-0 capitalize ">
+                        {" "}
+                        Seller:{" "}
+                        {medical?.seller?.firstName
+                          ? medical.seller.firstName
+                          : ""}
+                        ,
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </Popup>
             </Marker>
             <Routing

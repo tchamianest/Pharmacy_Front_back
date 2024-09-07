@@ -1,5 +1,6 @@
 import { DataTypes, UUIDV4, Model } from "sequelize";
 import { sequelizeConnection } from "../config/db.config.js";
+import User from "./user.js";
 
 class Product extends Model {}
 
@@ -18,6 +19,7 @@ Product.init(
       validate: {
         notEmpty: true,
       },
+      references: [],
     },
     locationName: {
       type: DataTypes.STRING,
