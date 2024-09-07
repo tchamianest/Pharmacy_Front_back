@@ -149,7 +149,18 @@ export const OneProduct = async (req, res) => {
     const { id } = req.params;
     const Productwithuser = await Product.findOne({
       where: { id: id },
-      include: [],
+      include: {
+        model: User,
+        as: "seller",
+        attributes: [
+          "id",
+          "firstName",
+          "phone",
+          "lastName",
+          "email",
+          "profileImage",
+        ],
+      },
     });
     res.status(200).json({ data: Productwithuser });
   } catch (error) {

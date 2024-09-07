@@ -10,7 +10,7 @@ function MapSectionsSearch({ data }) {
 
   const createLabelIcon = (label) => {
     const html = `
-          <div class="text-[10px] text-black font-bold  text-center " >
+          <div class="text-[13px] whitespace-nowrap text-blue-900 font-bold  text-center " >
           ${label} Pharmacy
            <img src='/location.png' class="w-10 h-10"/>
           </div>
