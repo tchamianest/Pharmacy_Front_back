@@ -4,6 +4,8 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import PropTypes from "prop-types";
 import axios from "axios";
+
+// the comments changes 
 function MapSectionsSearch({ data }) {
   let originPosition = [-1.969596, 30.061921];
   const [location, setLocation] = useState([]);

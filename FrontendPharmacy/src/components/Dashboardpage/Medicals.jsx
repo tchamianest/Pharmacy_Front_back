@@ -70,7 +70,6 @@ const Medicals = () => {
       }
     } catch (error) {
       notify(error.message);
-      console.log();
     }
   };
   return (

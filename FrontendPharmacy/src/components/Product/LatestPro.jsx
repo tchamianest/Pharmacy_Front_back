@@ -36,7 +36,6 @@ const dummyData = [
   // Add more dummy data as needed
 ];
 const LatestPro = (data) => {
-  console.log(data.data, "latest section medicals");
   function getLatestSevenItems(items) {
     // Sort the array by the createdAt field in descending order
     const sortedItems = items.sort(
@@ -49,7 +48,6 @@ const LatestPro = (data) => {
 
   const latestSevenItems = getLatestSevenItems(data.data);
 
-  console.log(latestSevenItems, "latest section medicals----------------");
   const settings = {
     dots: true,
     arrows: true,

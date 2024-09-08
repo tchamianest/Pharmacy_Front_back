@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 
 const ProductCard = ({ items }) => {
   const navigation = useNavigation();
-  console.log(items);
   return (
     <TouchableWithoutFeedback
       onPress={() => navigation.navigate("Restaurant", { ...items })}
