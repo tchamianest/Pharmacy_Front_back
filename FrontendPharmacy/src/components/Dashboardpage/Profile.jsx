@@ -71,7 +71,7 @@ const ProfilePage = () => {
           },
         }
       );
-      console.log(response.data.user);
+
       const user = {
         name1: response.data.user.firstName,
         name2: response.data.user.lastName,

@@ -58,7 +58,6 @@ function MapSections() {
 
     setLocation(newLocations);
   }, [data]);
-  console.log(data);
   return (
     <div className="w-full items-center flex-col justify-center flex bg-gray-600 pt-10">
       <div className="font-bold text-primary mb-10 text-2xl">
