@@ -32,7 +32,9 @@ export default function MapScreen() {
     datawait();
     const getUsers = async () => {
       try {
-        const response = await axios.get("http: 192.168.1.69:5000/api/users");
+        const response = await axios.get(
+          "https://pharmacy-front-back.onrender.com/api/users"
+        );
         if (response.data) {
           const data = response.data.Users;
           const name = data.find((ela) => ela.id === el.sellerId);
