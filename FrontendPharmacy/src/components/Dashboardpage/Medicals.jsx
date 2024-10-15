@@ -72,6 +72,29 @@ const Medicals = () => {
       notify(error.message);
     }
   };
+
+  const handleUpdate = async (el) => {
+    try {
+      console.log(el, "id=========");
+      const response = await axios.patch(
+        "http://localhost:5000/api/product/update",
+
+        { id: el.id, isAvailable: !el.isAvailable },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: localStorage.getItem("HeaderToken"),
+          },
+        }
+      );
+      if (response.status === 200) {
+        notify(`Product availability updated to ${!el.isAvailable}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="">
       <ToastContainer />
@@ -109,9 +132,16 @@ const Medicals = () => {
                   <div className="w-[20%]">
                     <p className=""> {el.productPrice} rwf</p>
                   </div>
-                  <p className="">
-                    {el.isAvailable ? "Available" : "Un Available"}
-                  </p>
+                  <button
+                    onClick={() => handleUpdate(el)}
+                    className={` ${
+                      el.isAvailable
+                        ? "bg-green-600 hover:bg-green-700"
+                        : "bg-red-500 hover:bg-red-600"
+                    } px-7 p-1 rounded-sm text-white text-sm `}
+                  >
+                    {el.isAvailable ? "UnAvailable" : "Available"}
+                  </button>
                   <div className="flex gap-5 justify-end">
                     <button
                       className="bg-blue-600 px-10 p-1 rounded-sm text-white hover:bg-blue-700"

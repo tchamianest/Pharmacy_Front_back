@@ -30,11 +30,9 @@ export default function ProductList() {
     };
     getUsers();
   }, []);
-
   return (
     <View className="px-3 ">
       <Text className="font-bold mt-5 mb-10 text-[18px] text-blue-400">
-        Product Section
       </Text>
       <ScrollView
         horizontal

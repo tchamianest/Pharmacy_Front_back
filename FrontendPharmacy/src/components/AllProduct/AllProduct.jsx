@@ -23,7 +23,6 @@ const AllProduct = () => {
 
     fetchData();
   }, []);
-
   return (
     <div>
       <LatestPro data={medical} />
@@ -31,7 +30,7 @@ const AllProduct = () => {
         {/* Header Title  */}
         <div className=" group-only:absolute ">
           <h1 className="font-bold text-1xl text-blue-400 dark:text-white">
-            Products section :
+            Products sections :
           </h1>
           <div className="relative h-1 dark:bg-white bg-blue-400 mt-2 max-w-[10%]"></div>
         </div>

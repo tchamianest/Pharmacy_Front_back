@@ -57,6 +57,13 @@ export const UpdateProduct = async (req, res) => {
         message: "this product is not exist in your stock",
       });
     }
+    if (req.body.isAvailable !== undefined) {
+      await Productdata.update({ isAvailable: req.body.isAvailable });
+      return res.status(200).json({
+        message: "Product availability updated successfully",
+        product: Productdata,
+      });
+    }
     const { productName, productPrice, productDescription } = req.body;
     if (!productName && !productPrice && !productDescription) {
       return res.status(400).send({
