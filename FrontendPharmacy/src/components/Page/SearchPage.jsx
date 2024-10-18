@@ -32,14 +32,20 @@ function SearchPage() {
     checkLocation();
   }, []);
   useEffect(() => {
+    if (!name || !location.trim()) return;
     const Fetch = async () => {
-      const result = await axios.get(
-        `http://localhost:5000/api/search?name=${name}&locationName= ${location}`
-      );
-      setData(result.data || []);
+      try {
+        const result = await axios.get(
+          `http://localhost:5000/api/search?name=${name}&locationName=${location}`
+        );
+        setData(result.data || []);
+      } catch (error) {
+        setData([]);
+      }
     };
     Fetch();
   }, [name, location]);
+
   const divStyle = {
     backgroundImage: `url(${help})`,
   };
