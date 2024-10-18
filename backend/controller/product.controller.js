@@ -141,7 +141,7 @@ export const SellerProduct = async (req, res) => {
 
 export const AllProduct = async (req, res) => {
   try {
-    const AllMedicals = await Product.findAll({});
+    const AllMedicals = await Product.findAll({ where: { isAvailable: true } });
     if (!AllMedicals) {
       res.status(400).json({ error: "The markert are empty" });
     }

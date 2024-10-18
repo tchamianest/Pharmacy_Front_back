@@ -89,6 +89,7 @@ const Medicals = () => {
       );
       if (response.status === 200) {
         notify(`Product availability updated to ${!el.isAvailable}`);
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

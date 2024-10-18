@@ -28,7 +28,7 @@ export const searchProducts = async (req, res) => {
       order = [locationOrderClause, ...order];
     }
     const products = await Product.findAll({
-      where: whereClause,
+      where: { isAvailable: true, ...whereClause },
       order: order,
       include: {
         model: User,
